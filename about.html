@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!-- Corrected from UTC-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanguard Robotics</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="8224peace.jpg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Sarpanch:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- CSS File -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header class="main-header">
+        <div class="header-logo">
+		  <a href="index.html" class=nav-link"</a>
+
+            <img src="8224peace.jpg" alt="Vanguard Robotics" class="img">
+        </div>
+
+        <nav class="header-nav">
+                   <nav class="header-nav" aria-label="Main navigation">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="robots.html" class="nav-link">Robots</a>
+            <a href="sponsor.html" class="nav-link">Sponsors</a>
+            <!-- Example of an internal anchor link (if Fr section is on the same page) -->
+            <a href="#french-section" class="nav-link" lang="fr" aria-label="Switch to French language">Fr</a>
+        </nav>
+
+        </nav>
+    </header>
+
+
+<div class="stats-container">
+    <div class="stat-item">
+	 <div class="count-num" data-val="30">0</div> 
+        <p>Active members</p>
+    </div>
+    <div class="stat-item">
+        <div class="count-num1" data-val="7">0</div>
+        <p>Robots built</p>
+    </div>
+    <div class="stat-item">
+        <div class="count-num1" data-val="10">0</div>
+        <p>Mentors</p>
+    </div>
+    <div class="stat-item">
+        <div class="count-num1" data-start="2026" data-end="2016">2026</div>
+        <p>Year Founded</p>
+    </div>
+</div>
+<script>
+    function animateCounters(entries, observer) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                
+                // --- Logic for count-num (Faster Speed) ---
+                const elementsNum = entry.target.querySelectorAll('.count-num');
+                elementsNum.forEach(el => {
+                    const startVal = parseInt(el.getAttribute('data-start')) || 0;
+                    const endVal = parseInt(el.getAttribute('data-end')) || parseInt(el.getAttribute('data-val')) || 0;
+                    let current = startVal;
+                    const isCountingDown = startVal > endVal;
+                    const range = Math.abs(startVal - endVal);
+                    // Standard Speed: finishes in roughly 200 * 60ms = 12 seconds total max duration
+                    const increment = Math.ceil(range / 200) || 1; 
+
+                    const updateCounter = setInterval(() => {
+                        if (isCountingDown) {
+                            current -= increment;
+                            if (current <= endVal) { el.innerText = endVal; clearInterval(updateCounter); } else { el.innerText = current; }
+                        } else {
+                            current += increment;
+                            if (current >= endVal) { el.innerText = endVal; clearInterval(updateCounter); } else { el.innerText = current; }
+                        }
+                    }, 60); 
+                });
+
+		        // --- Logic for count-num1 (Slower Speed) ---
+                const elementsNum1 = entry.target.querySelectorAll('.count-num1');
+                elementsNum1.forEach(el => {
+                    const startVal = parseInt(el.getAttribute('data-start')) || 0;
+                    const endVal = parseInt(el.getAttribute('data-end')) || parseInt(el.getAttribute('data-val')) || 0;
+                    let current = startVal;
+                    const isCountingDown = startVal > endVal;
+                    const range = Math.abs(startVal - endVal);
+                    // Slower Speed: finishes in roughly 400 * 60ms = 24 seconds total max duration
+                    const increment = Math.ceil(range / 400) || 1; // Doubled the divisor (400) to slow down animation
+
+                    const updateCounter = setInterval(() => {
+                        if (isCountingDown) {
+                            current -= increment;
+                            if (current <= endVal) { el.innerText = endVal; clearInterval(updateCounter); } else { el.innerText = current; }
+                        } else {
+                            current += increment;
+                            if (current >= endVal) { el.innerText = endVal; clearInterval(updateCounter); } else { el.innerText = current; }
+                        }
+                    }, 250); // You could also increase this interval time (e.g., to 90ms) to slow it down further
+
+                });
+
+                // Crucial: Only unobserve once both sets of counters have been initialized
+                observer.unobserve(entry.target); 
+            }
+        });
+
+    }
+
+    // Set up the Intersection Observer API (rest of code is the same)
+    const observerOptions = {
+        root: null, 
+        rootMargin: '0px',
+        threshold: 0.5 
+    };
+
+    const observer = new IntersectionObserver(animateCounters, observerOptions);
+    const statsContainer = document.querySelector('.stats-container');
+    
+    if (statsContainer) {
+        observer.observe(statsContainer);
+    }
+</script>
+<div class="hero-photo-section">
+   
+</div>
+
+<!-- Added a large margin-top to this section via CSS class -->
+<div class="content-section"> 
+    <div class="text-content">
+        <h2>TEAM HISTORY</h2>
+        <p>Vanguard Robotics is a team part of the Vanguard High School in Montreal, Quebec, who love to build, code, and compete against others. The Vanguard Robotics program introduces students to robots and technology while providing cross-curricular skill development enrichment for students living with learning disabilities. Vanguard Robotics was founded in 2016. The team first started by competing in the First Lego League competition. Vanguard Robotics has won the Judges’ Award multiple times. In 2019, the team even reached fourth place in the competition. In 2022, the high school senior robotics team competed in the FIRST Robotics Challenge and won the prestigious Judges’ Choice Award. In 2024 the team competed in FRC and CRC. In 2025 season Vanguard Robotics Team competed in FRC and CRC. The team made it to semi finals in CRC and did great at FRC. This year the team has grown to almost 40 students and 8 mentors. We have made the dicition to only compete in FRC, we will be attending the Festival de robotique in Montreal Quebec and Vancouver for the team first out of province competition. As a team we cannot wait to see the outcome of this season. </p>
+    </div>
+    <div class="photo-content">
+        <!-- Your smaller photo for the first section -->
+        <img src="team2024.JPG" alt="Description of photo 1">
+    </div>
+</div>
+
+<div class="content-section about-section-2">
+    <div class="photo-content">
+        <!-- Your smaller photo for the second section -->
+        <img src="william.jpg" alt="Description of photo 2">
+    </div>
+    <div class="text-content">
+        <h2>TEAM FUTURE</h2>
+        <p>The team looks forward to now being a well established FRC team, having purchased swearve drive and lots of other components that will be able to be re-used. We will have a nice foundation for the years to come. In the next couple years we hope to get major sponsors, new room improvements, and plans for a new robotics room to be built in the schools new facilitys in comming years. We eventualy hope have a larger team with great technologies and machines like CNC and milling machines. THis year was a huge step for the team, with the room that got renevated and new tools, mentors, teachers and parts. It can only get better from here.</p>
+    </div>
+</div>
+
+<div class="content-section about-section-3">
+    <div class="text-content">
+        <h2>ABOUT VANGUARD</h2>
+        <p>Who are we? Vanguard High School is a school designed to teach kids with learning difficulties. There is an English and French sector. Vanguard Elementary School was founded in 1973. The French sector of the high school was founded in 1987. The English sector of the high school was founded in the mid-80s. The English sector became a real school in 1992 when it merged in with the French sector. In 2013 all 3 of the Vanguard schools all moved onto one site, to where it is now. The school is located at 5935 Chemin de la Côte-de-Liesse in Saint-Laurent, Montreal.</p>
+    </div>
+    <div class="photo-content">
+        <!-- Your smaller photo for the third section -->
+        <img src="charles.jpg" alt="Description of photo 3">
+    </div>
+</div>
+
+	
+<footer>
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>Contact Vanguard School</h3>
+          <p> <a href="https://www.google.com/maps/dir//Vanguard+School,+5935+Chemin+de+la+C%C3%B4te-de-Liesse,+Saint-Laurent,+Quebec+H4T+1C3,+Canada/@45.3736397,-73.9871395,15z/data=!4m8!4m7!1m0!1m5!1m1!1s0x4cc9220a8bcf0347:0x29bd63a6c5567fed!2m2!1d-73.6838888!2d45.4918428?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D" target="_blank">5935 Chemin de la Côte-de-Liesse</a> </p> 
+          <p> <a href="https://www.google.com/maps/dir//Vanguard+School,+5935+Chemin+de+la+C%C3%B4te-de-Liesse,+Saint-Laurent,+Quebec+H4T+1C3,+Canada/@45.3736397,-73.9871395,15z/data=!4m8!4m7!1m0!1m5!1m1!1s0x4cc9220a8bcf0347:0x29bd63a6c5567fed!2m2!1d-73.6838888!2d45.4918428?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D" target="_blank">Saint-Laurent, QC H4T 1C3</a> </p> 
+            <p>Phone: (514)-747-5500</p>
+            <p>Email: <a href="mailto:info@vanguardquebec.qc.ca">info@vanguardquebec.qc.ca</a></p>
+        </div>
+        <div class="footer-section">
+            <h3>Contact Vanguard Robotics</h3>
+            <p>Team 8224</p>
+            <p>Email: <a href="mailto:robotics@vanguardquebec.qc.ca" target="_blank" >robotics@vanguardquebec.qc.ca</a></p>
+            <!-- Add social media links here with icons (FontAwesome or similar needed) -->
+            <a href="https://www.instagram.com/vanguard_robotics.team/?hl=en" target="vanguard_robotics.team" class="social-link">Instagram</a>
+        </div>
+        <div class="footer-section">
+            <h3>Partners & Sponsors</h3>
+            <p>Vanguard Foundation</p>
+			  	<p>RTX</p>
+            <p>Altair</p>
+			   <p>Solidworks</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 Vanguard Robotics Team 8224. All rights reserved.</p>
+    </div>
+</footer>
