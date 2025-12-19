@@ -1,4 +1,10 @@
-/* --- 1. Base Setup & Global Resets --- */
+.auto-style1 {
+	color: #D3D3D3;
+	font-size: 1.05em;
+}
+.auto-style2 {
+	color: #D3D3D3;
+}
 html, body {
     margin: 0;
     padding: 0;
@@ -11,14 +17,14 @@ body {
     background-color: #072418; /* Main dark green background */
     font-family: 'Orbitron', sans-serif; /* Assumed font link exists in HTML <head> */
     font-weight: 400;
-    padding-top: 120px; /* Offset for fixed header height */
+    padding-top: 100px; /* Offset for fixed header height */
 }
 
 .content-text h2 {
     font-size: 2.5em;
     margin-top: 0px; 
     margin-bottom: 25px; 
-    color: #000000; /* black */
+    color: #FFFFFF; /* black */
 }
 
 .content-text h3 {
@@ -46,7 +52,7 @@ p {
     align-items: center;
     background-color: #003720;
     color: white;
-    padding: 10px 20px;
+    padding: 10px 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     position: fixed;
     top: 0;
@@ -55,7 +61,7 @@ p {
 }
 
 .header-logo img {
-    height: 100px;
+    height: 80px;
     vertical-align: middle;
 }
 
@@ -212,7 +218,7 @@ header h1 {
 .count-num, .count-num1 { 
     font-size: 5em;
     font-weight: bold;
-    color: #072418; 
+    color: #D3D3D3; 
     display: block;
     margin-bottom: 5px;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
@@ -366,9 +372,9 @@ header h1 {
 footer {
     background-color: #003720; /* Darker green background */
     color: white;
-    padding: 40px 20px 20px;
+    padding: 10px 10px;
     font-family: 'Sarpanch', sans-serif; /* Matches your navigation font */
-    margin-top: 50px; /* Adds space above the footer */
+    margin-top: 20px; /* Adds space above the footer */
 }
 
 .footer-container {
@@ -383,28 +389,28 @@ footer {
 .footer-section {
     flex: 1;
     min-width: 250px;
-    margin-bottom: 20px;
+
 }
 
 .footer-section h3 {
-    color: #000000; /* Accent color for titles */
+    color: #FFFFFF; /* Accent color for titles */
     margin-bottom: 15px;
-    font-size: 1.2rem;
+    font-size: 1.2em;
     text-transform: uppercase;
 }
 
 .footer-section p, .footer-section a {
-    color: #000000;
+    color: #FFFFFF;
     text-decoration: none;
     line-height: 1.5;
     display: block;
     margin-bottom: 5px;
-    font-size: 0.9rem;
+    font-size: 1em;
 }
 
 .footer-section a:hover {
-    color: white;
     text-decoration: underline;
+	 font-weight: bold;
 }
 
 .social-link {
@@ -415,10 +421,10 @@ footer {
 
 .footer-bottom {
     text-align: center;
-    margin-top: 40px;
-    padding-top: 20px;
+    margin-top: 5px;
+    padding-top: 0px;
     border-top: 1px solid #072418; /* A subtle line above copyright */
-    font-size: 0.8rem;
+    font-size: 0.8em;
     color: #888;
 }
 
