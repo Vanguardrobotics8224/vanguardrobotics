@@ -72,6 +72,17 @@ p {
     font-weight: 600;
 }
 
+.nav-toggle{
+  background:none;
+  border:0;
+  font-size:1.25rem;
+  padding:0.5rem;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+}
+
 /* Desktop: show nav inline */
 @media (min-width: 768px){
   .header-nav{ display:flex; }
