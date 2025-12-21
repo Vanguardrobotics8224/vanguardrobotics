@@ -74,7 +74,7 @@ p {
 
 /* Desktop: show nav inline */
 @media (min-width: 768px){
-  .header-nav{ display:flex; gap:1rem; align-items:center; padding:0; }
+  .header-nav{ display:flex; }
   .nav-toggle{ display:none; }
 }
 
