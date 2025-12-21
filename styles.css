@@ -61,6 +61,7 @@ p {
 }
 
 .header-logo img {
+    display: none;
     height: 80px;
     vertical-align: middle;
 }
@@ -87,6 +88,7 @@ p {
 @media (min-width: 768px){
   .header-nav{ display:flex; }
   .nav-toggle{ display:none; }
+  .header-logo{ display:flex; }
 }
 
 .nav-btn, .nav-link {
