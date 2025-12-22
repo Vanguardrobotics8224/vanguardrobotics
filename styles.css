@@ -48,7 +48,6 @@ p {
 
 .main-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     background-color: #003720;
     color: white;
@@ -84,11 +83,26 @@ p {
   cursor:pointer;
 }
 
+.nav{
+    font-family: "Times New Roman", Times, serif;
+    font-size: 0.8rem;
+    font-color:#ffffff;
+}
+
+.nav a{
+  padding:0.5rem 0;
+  text-decoration:none;
+  color:var(--text);
+  font-weight:500;
+}
+
+
 /* Desktop: show nav inline */
 @media (min-width: 768px){
   .header-nav{ display:flex; }
   .nav-toggle{ display:none; }
-  .header-logo{ display:flex; }
+  .main-header{ justify-content: space-between; }
+  .header-logo img{display:flex;}
 }
 
 .nav-btn, .nav-link {

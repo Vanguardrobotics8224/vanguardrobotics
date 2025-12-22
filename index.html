@@ -24,10 +24,6 @@
 
     <!-- Header Section -->
     <header class="main-header">
-        <div class="header-logo">
-			  <a href="index.html" class=nav-link">
-				  <img src="images/8224peace.jpg" alt="Vanguard Robotics" class="img"></a>
-        </div>
 
     <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Toggle navigation">
       <svg width="22" height="12" viewBox="0 0 22 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -37,7 +33,12 @@
       </svg>
     </button>
 
-        <nav id="siteNav" class="header-nav" aria-label="Main navigation" hidden>
+        <div class="header-logo">
+			  <a href="index.html" class=nav-link">
+				  <img src="images/8224peace.jpg" alt="Vanguard Robotics" class="img"></a>
+        </div>
+
+        <nav id="wideNav" class="header-nav" aria-label="Main navigation">
             <!-- Example of links to different pages -->
             <a href="index.html" class="nav-link">Home</a>
             <a href="about.html" class="nav-link">About</a>
@@ -46,6 +47,16 @@
             <!-- Example of an internal anchor link (if Fr section is on the same page) -->
             <a href="indexfr.html" class="nav-link" lang="fr" aria-label="Switch to French language">Fr</a>
         </nav>
+
+    <nav id="siteNav" class="nav" role="navigation" hidden>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="robots.html">Robots</a>
+            <a href="sponsor.html">Sponsors</a>
+            <!-- Example of an internal anchor link (if Fr section is on the same page) -->
+            <a href="indexfr.html" lang="fr" aria-label="Switch to French language">Fr</a>
+    </nav>
+
 
     </header>
 <script>
