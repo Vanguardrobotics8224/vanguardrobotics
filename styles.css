@@ -182,7 +182,6 @@ p {
     width: 100%;
     height: auto;
     display: block;
-    filter: grayscale(100%);
     transition: filter 0.5s ease;
 }
 
@@ -208,6 +207,7 @@ p {
     .full-width-video {height: 100vh;}
     .video-text-overlay h1 {font-size: 80px;}
     .photo-title {font-size: 2rem;}
+    .photo-button-item img {filter: grayscale(100%);}
 }
 
 header h1 {
