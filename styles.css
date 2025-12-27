@@ -154,7 +154,6 @@ p {
 }
 
 .gallery-container {
-    display: flex;
     justify-content: space-evenly;
     gap: 20px;
     max-width: 1200px;
@@ -163,7 +162,6 @@ p {
 }
 
 .photo-button-item {
-    flex: 1;
     position: relative;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -180,7 +178,7 @@ p {
 
 .photo-button-item img {
     width: 100%;
-    height: auto;
+    height: 300px;
     display: block;
     transition: filter 0.5s ease;
 }
@@ -208,6 +206,8 @@ p {
     .video-text-overlay h1 {font-size: 80px;}
     .photo-title {font-size: 2rem;}
     .photo-button-item img {filter: grayscale(100%);}
+    .gallery-container {display: flex;}
+    .photo-button-item img {height: auto;}
 }
 
 header h1 {
@@ -558,4 +558,85 @@ footer {
         font-size: 2em;
     }
 }
+.scroll-container {
+  display: flex;
+  overflow-x: auto; /* Enables horizontal scroll bar */
+  white-space: nowrap;
+  gap: 10px; /* Space between images */
+  padding-bottom: 15px; /* Space for the scrollbar */
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory; /* Optional: snaps to images */
+}
 
+.scroll-container a {
+  flex: 0 0 calc(20% - 10px); /* Shows 5 items at once */
+  scroll-snap-align: start;
+}
+
+.scroll-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.3s;
+}
+
+.scroll-container img:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Custom scrollbar styling (Optional) */
+.scroll-container::-webkit-scrollbar {
+  height: 8px;
+}
+.scroll-container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+/* CSS for Magazine Wrap & Columns */
+.magazine-content {
+  column-count: 2; /* Optional: Creates two-column magazine text */
+  column-gap: 30px;
+  line-height: 1.6;
+}
+
+.float-right {
+  float: right;
+  width: 40%;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+.pull-quote {
+  font-size: 1.5rem;
+  font-style: italic;
+  border-left: 4px solid #333;
+  padding-left: 20px;
+  margin: 20px 0;
+  column-span: all; /* Spans across both columns if using columns */
+}
+/* Styling the Arrows */
+.post-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+  padding: 20px 0;
+  border-top: 1px solid #ddd;
+}
+
+.nav-arrow {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.nav-arrow:hover {
+  color: #007bff;
+}
+
+/* Optional: "Sticky" Floating Arrows on the sides */
+/*
+.left-arrow { position: fixed; left: 20px; top: 50%; }
+.right-arrow { position: fixed; right: 20px; top: 50%; }
+*/

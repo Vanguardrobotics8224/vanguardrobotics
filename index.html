@@ -17,7 +17,6 @@
     
     <!-- CSS File -->
     <link rel="stylesheet" href="styles.css">
-<!--    <link rel="stylesheet" href="css_styles_Version4.css"> -->
 </head>
 
 <body>
@@ -43,27 +42,6 @@
 
 
     </header>
-<script>
-  (function(){
-    const btn = document.getElementById('navToggle');
-    const nav = document.getElementById('siteNav');
-    if (!btn || !nav) return;
-    btn.addEventListener('click', function(){
-      const expanded = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!expanded));
-      if (nav.hasAttribute('hidden')) nav.removeAttribute('hidden');
-      else nav.setAttribute('hidden', '');
-    });
-
-    // Close nav when clicking outside (mobile)
-    document.addEventListener('click', function(e){
-      if (!nav.contains(e.target) && !btn.contains(e.target) && !nav.hasAttribute('hidden')) {
-        nav.setAttribute('hidden', '');
-        btn.setAttribute('aria-expanded', 'false');
-      }
-    });
-  })();
-</script>
 
     <!-- Video Hero Section -->
     <div class="video-hero-section">
@@ -99,6 +77,26 @@
             <a href="sponsor.html" class="photo-button-item">
                 <img src="images/practice1.jpg" alt="sponsor">
                 <div class="photo-title">SPONSORS</div>
+            </a>
+        </div>
+    </section>
+<h1><font color="#ffffff"><center>Latest News</center></font></h1><br><br>
+
+    <section class="photo-button-gallery">
+        <div class="gallery-container">
+            <a href="blog1.html" class="photo-button-item">
+                <img src="images/captains.jpg" alt="Robot">
+                <div class="photo-title">TEAM ORIGINS</div>
+            </a>
+
+            <a href="blog2.html" class="photo-button-item">
+                <img src="images/roboto.jpg" alt="robot">
+                <div class="photo-title">2025 PRESEASON</div>
+            </a>
+
+            <a href="blog3.html" class="photo-button-item">
+                <img src="images/practice1.jpg" alt="sponsor">
+                <div class="photo-title">WORDS FROM JACOB</div>
             </a>
         </div>
     </section>
