@@ -639,3 +639,24 @@ footer {
 .left-arrow { position: fixed; left: 20px; top: 50%; }
 .right-arrow { position: fixed; right: 20px; top: 50%; }
 */
+.full-screen-image {
+  /* Set your photo as a background */
+  background-image: url('your-image-url.jpg');
+  
+  /* Make it fill the entire screen */
+  width: 100vw;   /* 100% of viewport width */
+  height: 100vh;  /* 100% of viewport height */
+  
+  /* Ensure the image covers the area without stretching */
+  background-size: cover;
+  background-position: center;
+  
+  /* Optional: keeps image still as you scroll */
+  background-attachment: fixed; 
+}
+
+/* Ensure no default page margins create gaps */
+body {
+  margin: 0;
+  padding: 0;
+}
