@@ -662,11 +662,27 @@ body {
 }
 
 @media (max-width: 992px) {
-    .stat-item {
-        padding: 40px 10px; /* Reduce massive desktop padding */
-        min-width: 100%;    /* Ensure items stack clearly */
+    .stats-container {
+        /* Mobile fixes */
+        flex-direction: column; 
+        padding: 40px 20px; /* Reduced from 50px */
+        background-attachment: scroll; /* 'fixed' causes glitches/zoom issues on mobile */
+        background-position: center center;
     }
+
+    .stat-item {
+        width: 100%;
+        margin: 0;
+        padding: 30px 0; /* Huge fix: changed from 150px to 30px */
+        min-width: unset;
+        border-bottom: 1px solid rgba(211, 211, 211, 0.2); /* Optional: adds a separator */
+    }
+
+    .stat-item:last-child {
+        border-bottom: none;
+    }
+
     .count-num {
-        font-size: 3.5em;   /* Scale down font size for smaller screens */
+        font-size: 3.5em; /* Scale down the giant 5em font for small screens */
     }
 }
