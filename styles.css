@@ -490,7 +490,7 @@ footer {
     font-size: 2.5em;
     color: #000000; /* Your accent color */
     margin-top: 50px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
 }
 
 /* Base style for all logo rows using Flexbox */
@@ -659,4 +659,14 @@ footer {
 body {
   margin: 0;
   padding: 0;
+}
+
+@media (max-width: 992px) {
+    .stat-item {
+        padding: 40px 10px; /* Reduce massive desktop padding */
+        min-width: 100%;    /* Ensure items stack clearly */
+    }
+    .count-num {
+        font-size: 3.5em;   /* Scale down font size for smaller screens */
+    }
 }
