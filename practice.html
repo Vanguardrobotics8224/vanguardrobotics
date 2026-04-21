@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slope Style</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo" onclick="showMainShop()">SLOPE STYLE</div>
+        <div class="cart-icon" onclick="showCheckout()">🛒 CART (<span id="cart-count-badge">0</span>)</div>
+    </header>
+    <div id="cart-notification" style="display:none; position:fixed; top:80px; right:20px; background:#00f2ff; color:#000; padding:20px; z-index:1001;">
+        <p>ADDED TO CART!</p>
+        <button onclick="showCheckout()">View Cart</button>
+        <button onclick="closeNotif()">Keep Shopping</button>
+    </div>
+    <main id="main-shop"><div id="shop-rows-container"></div></main>
+    <div id="product-page" style="display:none; grid-template-columns: 380px 1fr;">
+        <aside class="product-sidebar">
+            <span class="back-link" onclick="showMainShop()">← BACK TO SHOP</span>
+            <h1 id="p-name"></h1>
+            <div id="p-price" class="large-price"></div>
+            <label>SELECT SIZE</label>
+            <div id="size-list" class="size-selection-grid"></div>
+            <button class="add-to-cart-large" onclick="addToCart()">ADD TO GEAR BAG</button>
+        </aside>
+        <main class="product-gallery" id="p-gallery"></main>
+    </div>
+    <div id="checkout-page" style="display:none; padding: 80px 10%;">
+        <div onclick="showMainShop()" style="cursor:pointer; color:#00f2ff; margin-bottom:20px;">← CONTINUE SHOPPING</div>
+        <div class="checkout-grid">
+            <div class="order-form">
+                <h3>1. SHIPPING DETAILS</h3>
+                <input type="text" placeholder="Full Name"><input type="email" placeholder="Email Address">
+                <h3>2. PAYMENT (CREDIT CARD)</h3>
+                <input type="text" placeholder="Cardholder Name"><input type="text" placeholder="Card Number">
+                <button class="add-to-cart-large" onclick="placeOrder()">COMPLETE PURCHASE</button>
+            </div>
+            <div class="order-summary"><h3>YOUR BAG</h3><div id="summary-items"></div><div id="summary-total"></div></div>
+        </div>
+    </div>
+    <script>
+        const inventory = [
+            { id: 1, name: "MINDBENDER 116C", price: 849.95, sizes: ["179", "186", "191"], img: "skis.jpg" },
+            { id: 2, name: "SUMMIT RIDGE SHELL", price: 420.00, sizes: ["S", "M", "L", "XL"], img: "jacket.jpg" },
+            { id: 3, name: "RECON 130 BOOTS", price: 699.00, sizes: ["26.5", "27.5", "28.5"], img: "boots.jpg" },
+            { id: 4, name: "SLOPE GOGGLES", price: 185.00, sizes: ["OS"], img: "goggles.jpg" }
+        ];
+        let cart = [], activeProduct = null, selectedSize = "";
+        function renderShop() {
+            document.getElementById('shop-rows-container').innerHTML = inventory.map(p => `
+                <div class="shop-row">
+                    <div class="text-panel"><h2>${p.name}</h2><p class="price-hero">$${p.price}</p><button class="view-btn" onclick="showProduct(${p.id})">VIEW GEAR</button></div>
+                    <div class="image-panel"><img src="${p.img}" class="product-preview-img" onclick="showProduct(${p.id})"></div>
+                </div>`).join('');
+        }
+        function showProduct(id) {
+            activeProduct = inventory.find(i => i.id === id);
+            selectedSize = ""; 
+            document.getElementById('main-shop').style.display = 'none';
+            document.getElementById('checkout-page').style.display = 'none';
+            document.getElementById('product-page').style.display = 'grid';
+            document.getElementById('p-name').innerText = activeProduct.name;
+            document.getElementById('p-price').innerText = `$${activeProduct.price}`;
+            document.getElementById('size-list').innerHTML = activeProduct.sizes.map(s => `<div class="size-option" onclick="selectSize(this, '${s}')">${s}</div>`).join('');
+            document.getElementById('p-gallery').innerHTML = Array(7).fill(0).map(() => `<img src="${activeProduct.img}" class="gallery-img">`).join('');
+            window.scrollTo(0,0);
+        }
+        function selectSize(el, s) {
+            document.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('selected'));
+            el.classList.add('selected');
+            selectedSize = s;
+        }
+        function addToCart() {
+            if (!selectedSize) return alert("Please select a size first!");
+            cart.push({ ...activeProduct, size: selectedSize, cartId: Date.now() });
+            document.getElementById('cart-count-badge').innerText = cart.length;
+            document.getElementById('cart-notification').style.display = 'block';
+        }
+        function showCheckout() {
+            document.getElementById('main-shop').style.display = 'none';
+            document.getElementById('product-page').style.display = 'none';
+            document.getElementById('checkout-page').style.display = 'block';
+            document.getElementById('summary-items').innerHTML = cart.map(item => `<div>${item.name} (${item.size}) - $${item.price}</div>`).join('');
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            document.getElementById('summary-total').innerText = `TOTAL: $${total.toFixed(2)}`;
+        }
+        function placeOrder() {
+            if (cart.length === 0) return alert("Your bag is empty!");
+            alert("Payment successful!");
+            cart = [];
+            document.getElementById('cart-count-badge').innerText = '0';
+            showMainShop();
+        }
+        function showMainShop() {
+            document.getElementById('main-shop').style.display = 'block';
+            document.getElementById('product-page').style.display = 'none';
+            document.getElementById('checkout-page').style.display = 'none';
+        }
+        function closeNotif() { document.getElementById('cart-notification').style.display = 'none'; }
+        renderShop();
+    </script>
+</body>
+</html>
