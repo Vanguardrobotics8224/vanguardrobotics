@@ -1,94 +1,129 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slope Style</title>
-
-    <link rel="icon" type="image/x-icon" href="logo.jpeg">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Sarpanch:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="styles.css">
-</head>
-
-<body>
-
-    <!-- Header -->
-    <header class="main-header">
-        <div class="header-logo">
-		  <a href="index.html" class=nav-link"</a>
-
-            <img src="logo.jpeg" alt="Slpoe Styles" class="img">
-        </div>
-
-        <nav class="header-nav">
-                   <nav class="header-nav" aria-label="Main navigation">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="about.html" class="nav-link">About</a>
-            <a href="product.html" class="nav-link">Products</a>
-            <a href="jumpstart.html" class="nav-link">Jumpstart</a>
-            <div class="cart-icon" onclick="showCheckout()">🛒 CART (<span id="cart-count-badge">0</span>)
-							 
-        </nav>
-
-        </nav>
-    </header>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slope Style</title>
+    <title>Slope Style | 2026 Collection</title>
+    <link rel="icon" type="image/x-icon" href="logo.jpeg">
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Orbitron:wght@400..900&family=Sarpanch:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Blending your requested styles with the shop logic */
+        .content-section {
+            display: flex;
+            align-items: center;
+            padding: 50px 10%;
+            gap: 40px;
+        }
+        .content-section:nth-child(even) { flex-direction: row-reverse; }
+        .text-content { flex: 1; }
+        .photo-content { flex: 1; }
+        .photo-content img { width: 100%; border-radius: 8px; cursor: pointer; transition: transform 0.3s; }
+        .photo-content img:hover { transform: scale(1.02); }
+        .auto-style1 { line-height: 1.6; }
+        .view-btn {
+            background: #00f2ff;
+            color: #000;
+            padding: 12px 25px;
+            border: none;
+            font-family: 'Orbitron', sans-serif;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-	
-    <div id="cart-notification" style="display:none; position:fixed; top:80px; right:20px; background:#00f2ff; color:#000; padding:20px; z-index:1001;">
-        <p>ADDED TO CART!</p>
+
+    <header class="main-header">
+        <div class="header-logo">
+            <a href="index.html"><img src="logo.jpeg" alt="Slope Styles" style="height: 50px;"></a>
+        </div>
+        <nav class="header-nav" aria-label="Main navigation">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="product.html" class="nav-link">Products</a>
+            <a href="jumpstart.html" class="nav-link">Jumpstart</a>
+            <div class="cart-icon" onclick="showCheckout()" style="cursor:pointer;">🛒 CART (<span id="cart-count-badge">0</span>)</div>
+        </nav>
+    </header>
+
+    <div id="cart-notification" style="display:none; position:fixed; top:80px; right:20px; background:#00f2ff; color:#000; padding:20px; z-index:1001; border: 2px solid #000;">
+        <p>ADDED TO GEAR BAG!</p>
         <button onclick="showCheckout()">View Cart</button>
         <button onclick="closeNotif()">Keep Shopping</button>
     </div>
-    <main id="main-shop"><div id="shop-rows-container"></div></main>
-    <div id="product-page" style="display:none; grid-template-columns: 380px 1fr;">
+
+    <!-- Main Shop Area -->
+    <main id="main-shop">
+        <div id="shop-rows-container">
+            <!-- Items will be injected here using your new formatting -->
+        </div>
+    </main>
+
+    <!-- Product Detail View -->
+    <div id="product-page" style="display:none; grid-template-columns: 380px 1fr; padding: 100px 10%;">
         <aside class="product-sidebar">
-            <span class="back-link" onclick="showMainShop()">← BACK TO SHOP</span>
-            <h1 id="p-name"></h1>
-            <div id="p-price" class="large-price"></div>
+            <span class="back-link" onclick="showMainShop()" style="cursor:pointer; color:#00f2ff;">← BACK TO SHOP</span>
+            <h1 id="p-name" style="font-family:'Sarpanch';"></h1>
+            <div id="p-price" class="large-price" style="font-size: 2rem; margin: 20px 0;"></div>
             <label>SELECT SIZE</label>
-            <div id="size-list" class="size-selection-grid"></div>
-            <button class="add-to-cart-large" onclick="addToCart()">ADD TO GEAR BAG</button>
+            <div id="size-list" class="size-selection-grid" style="display:flex; gap:10px; margin: 20px 0;"></div>
+            <button class="add-to-cart-large" onclick="addToCart()" style="width:100%; padding:20px; background:#00f2ff; font-weight:bold;">ADD TO GEAR BAG</button>
         </aside>
-        <main class="product-gallery" id="p-gallery"></main>
+        <main class="product-gallery" id="p-gallery" style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;"></main>
     </div>
+
+    <!-- Checkout Area -->
     <div id="checkout-page" style="display:none; padding: 80px 10%;">
         <div onclick="showMainShop()" style="cursor:pointer; color:#00f2ff; margin-bottom:20px;">← CONTINUE SHOPPING</div>
-        <div class="checkout-grid">
+        <div class="checkout-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap:50px;">
             <div class="order-form">
                 <h3>1. SHIPPING DETAILS</h3>
-                <input type="text" placeholder="Full Name"><input type="email" placeholder="Email Address">
-                <h3>2. PAYMENT (CREDIT CARD)</h3>
-                <input type="text" placeholder="Cardholder Name"><input type="text" placeholder="Card Number">
-                <button class="add-to-cart-large" onclick="placeOrder()">COMPLETE PURCHASE</button>
+                <input type="text" placeholder="Full Name" style="width:100%; margin-bottom:10px; padding:10px;">
+                <input type="email" placeholder="Email Address" style="width:100%; margin-bottom:10px; padding:10px;">
+                <h3>2. PAYMENT</h3>
+                <input type="text" placeholder="Card Number" style="width:100%; padding:10px;">
+                <button class="view-btn" onclick="placeOrder()" style="width:100%; margin-top:20px;">COMPLETE PURCHASE</button>
             </div>
-            <div class="order-summary"><h3>YOUR BAG</h3><div id="summary-items"></div><div id="summary-total"></div></div>
+            <div class="order-summary" style="background:#1a1a1a; padding:20px; border-radius:8px;">
+                <h3>YOUR BAG</h3>
+                <div id="summary-items"></div>
+                <hr>
+                <div id="summary-total" style="font-size:1.5rem; font-family:'Orbitron';"></div>
+            </div>
         </div>
     </div>
+
     <script>
         const inventory = [
-            { id: 1, name: "MINDBENDER 116C", price: 849.95, sizes: ["179", "186", "191"], img: "ski.1jpg" },
-            { id: 2, name: "SUMMIT RIDGE SHELL", price: 420.00, sizes: ["S", "M", "L", "XL"], img: "ski1.jpg" },
-            { id: 3, name: "RECON 130 BOOTS", price: 699.00, sizes: ["26.5", "27.5", "28.5"], img: "ski1.jpg" },
-            { id: 4, name: "SLOPE GOGGLES", price: 185.00, sizes: ["OS"], img: "ski1.jpg" }
+            { id: 1, name: "MINDBENDER 116C", desc: "The ultimate powder weapon for 2026. Rebuilt for maximum float and stability.", price: 849.95, sizes: ["179", "186", "191"], img: "ski.1jpg" },
+            { id: 2, name: "SUMMIT RIDGE SHELL", desc: "A brand new technical outer layer designed for the harshest alpine conditions.", price: 420.00, sizes: ["S", "M", "L", "XL"], img: "ski1.jpg" },
+            { id: 3, name: "RECON 130 BOOTS", desc: "Precision engineering meets comfort. Built with a high-performance heat-moldable shell.", price: 699.00, sizes: ["26.5", "27.5", "28.5"], img: "ski1.jpg" },
+            { id: 4, name: "SLOPE GOGGLES", desc: "Crystal clear vision with magnetic lens swapping technology for changing light.", price: 185.00, sizes: ["OS"], img: "ski1.jpg" }
         ];
+
         let cart = [], activeProduct = null, selectedSize = "";
+
         function renderShop() {
-            document.getElementById('shop-rows-container').innerHTML = inventory.map(p => `
-                <div class="shop-row">
-                    <div class="text-panel"><h2>${p.name}</h2><p class="price-hero">$${p.price}</p><button class="view-btn" onclick="showProduct(${p.id})">VIEW GEAR</button></div>
-                    <div class="image-panel"><img src="${p.img}" class="product-preview-img" onclick="showProduct(${p.id})"></div>
-                </div>`).join('');
+            // Uses your alternating section format
+            document.getElementById('shop-rows-container').innerHTML = inventory.map((p, index) => `
+                <section class="content-section">
+                    <div class="text-content">
+                        <h2><span class="auto-style1">${p.name}</span></h2>
+                        <h2 style="color:#00f2ff;">2026 SERIES</h2>
+                        <p><span class="auto-style1">${p.desc}</span></p>
+                        <p><strong>$${p.price}</strong></p>
+                        <button class="view-btn" onclick="showProduct(${p.id})">VIEW GEAR</button>
+                    </div>
+                    <div class="photo-content">
+                        <img src="${p.img}" alt="${p.name}" onclick="showProduct(${p.id})">
+                    </div>
+                </section>
+            `).join('');
         }
+
         function showProduct(id) {
             activeProduct = inventory.find(i => i.id === id);
             selectedSize = ""; 
@@ -97,42 +132,50 @@
             document.getElementById('product-page').style.display = 'grid';
             document.getElementById('p-name').innerText = activeProduct.name;
             document.getElementById('p-price').innerText = `$${activeProduct.price}`;
-            document.getElementById('size-list').innerHTML = activeProduct.sizes.map(s => `<div class="size-option" onclick="selectSize(this, '${s}')">${s}</div>`).join('');
-            document.getElementById('p-gallery').innerHTML = Array(7).fill(0).map(() => `<img src="${activeProduct.img}" class="gallery-img">`).join('');
+            document.getElementById('size-list').innerHTML = activeProduct.sizes.map(s => `<div class="size-option" style="border:1px solid #fff; padding:10px; cursor:pointer;" onclick="selectSize(this, '${s}')">${s}</div>`).join('');
+            document.getElementById('p-gallery').innerHTML = Array(4).fill(0).map(() => `<img src="${activeProduct.img}" style="width:100%;">`).join('');
             window.scrollTo(0,0);
         }
+
         function selectSize(el, s) {
-            document.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('selected'));
-            el.classList.add('selected');
+            document.querySelectorAll('.size-option').forEach(opt => opt.style.background = 'none');
+            el.style.background = '#00f2ff';
+            el.style.color = '#000';
             selectedSize = s;
         }
+
         function addToCart() {
             if (!selectedSize) return alert("Please select a size first!");
             cart.push({ ...activeProduct, size: selectedSize, cartId: Date.now() });
             document.getElementById('cart-count-badge').innerText = cart.length;
             document.getElementById('cart-notification').style.display = 'block';
         }
+
         function showCheckout() {
             document.getElementById('main-shop').style.display = 'none';
             document.getElementById('product-page').style.display = 'none';
             document.getElementById('checkout-page').style.display = 'block';
-            document.getElementById('summary-items').innerHTML = cart.map(item => `<div>${item.name} (${item.size}) - $${item.price}</div>`).join('');
+            document.getElementById('summary-items').innerHTML = cart.map(item => `<div style="margin-bottom:10px;">${item.name} (${item.size}) - $${item.price}</div>`).join('');
             const total = cart.reduce((sum, item) => sum + item.price, 0);
             document.getElementById('summary-total').innerText = `TOTAL: $${total.toFixed(2)}`;
         }
+
         function placeOrder() {
             if (cart.length === 0) return alert("Your bag is empty!");
-            alert("Payment successful!");
+            alert("Order placed successfully!");
             cart = [];
             document.getElementById('cart-count-badge').innerText = '0';
             showMainShop();
         }
+
         function showMainShop() {
             document.getElementById('main-shop').style.display = 'block';
             document.getElementById('product-page').style.display = 'none';
             document.getElementById('checkout-page').style.display = 'none';
         }
+
         function closeNotif() { document.getElementById('cart-notification').style.display = 'none'; }
+        
         renderShop();
     </script>
 </body>
