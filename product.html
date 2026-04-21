@@ -1,114 +1,317 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Slope Style | 2026 Collection</title>
-    <link rel="icon" type="image/x-icon" href="logo.jpeg">
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Orbitron:wght@400..900&family=Sarpanch:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="logo.jpeg" />
+    <link rel="preconnect" href="https://googleapis.com" />
+    <link rel="preconnect" href="https://gstatic.com" crossorigin />
+    <link
+      href="https://googleapis.com/css2?family=Orbitron:wght@400..900&family=Sarpanch:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
     <style>
-        /* Blending your requested styles with the shop logic */
-        .content-section {
-            display: flex;
-            align-items: center;
-            padding: 50px 10%;
-            gap: 40px;
-        }
-        .content-section:nth-child(even) { flex-direction: row-reverse; }
-        .text-content { flex: 1; }
-        .photo-content { flex: 1; }
-        .photo-content img { width: 100%; border-radius: 8px; cursor: pointer; transition: transform 0.3s; }
-        .photo-content img:hover { transform: scale(1.02); }
-        .auto-style1 { line-height: 1.6; }
-        .view-btn {
-            background: #00f2ff;
-            color: #000;
-            padding: 12px 25px;
-            border: none;
-            font-family: 'Orbitron', sans-serif;
-            cursor: pointer;
-            margin-top: 20px;
-        }
+      /* Blending your requested styles with the shop logic */
+      .content-section {
+        display: flex;
+        align-items: center;
+        padding: 50px 10%;
+        gap: 40px;
+      }
+      .content-section:nth-child(even) {
+        flex-direction: row-reverse;
+      }
+      .text-content {
+        flex: 1;
+      }
+      .photo-content {
+        flex: 1;
+      }
+      .photo-content img {
+        width: 100%;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform 0.3s;
+      }
+      .photo-content img:hover {
+        transform: scale(1.02);
+      }
+      .auto-style1 {
+        line-height: 1.6;
+      }
+      .view-btn {
+        background: #00f2ff;
+        color: #000;
+        padding: 12px 25px;
+        border: none;
+        font-family: "Orbitron", sans-serif;
+        cursor: pointer;
+        margin-top: 20px;
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <header class="main-header">
-        <div class="header-logo">
-            <a href="index.html"><img src="logo.jpeg" alt="Slope Styles" style="height: 50px;"></a>
+      <div class="header-logo">
+        <a href="index.html"
+          ><img src="logo.jpeg" alt="Slope Styles" style="height: 50px"
+        /></a>
+      </div>
+      <nav class="header-nav" aria-label="Main navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="product.html" class="nav-link">Products</a>
+        <a href="jumpstart.html" class="nav-link">Jumpstart</a>
+        <div class="cart-icon" onclick="showCheckout()" style="cursor: pointer">
+          🛒 CART (<span id="cart-count-badge">0</span>)
         </div>
-        <nav class="header-nav" aria-label="Main navigation">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="about.html" class="nav-link">About</a>
-            <a href="product.html" class="nav-link">Products</a>
-            <a href="jumpstart.html" class="nav-link">Jumpstart</a>
-            <div class="cart-icon" onclick="showCheckout()" style="cursor:pointer;">🛒 CART (<span id="cart-count-badge">0</span>)</div>
-        </nav>
+      </nav>
     </header>
 
-    <div id="cart-notification" style="display:none; position:fixed; top:80px; right:20px; background:#00f2ff; color:#000; padding:20px; z-index:1001; border: 2px solid #000;">
-        <p>ADDED TO GEAR BAG!</p>
-        <button onclick="showCheckout()">View Cart</button>
-        <button onclick="closeNotif()">Keep Shopping</button>
+    <div
+      id="cart-notification"
+      style="
+        display: none;
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        background: #00f2ff;
+        color: #000;
+        padding: 20px;
+        z-index: 1001;
+        border: 2px solid #000;
+      "
+    >
+      <p>ADDED TO GEAR BAG!</p>
+      <button onclick="showCheckout()">View Cart</button>
+      <button onclick="closeNotif()">Keep Shopping</button>
     </div>
 
     <!-- Main Shop Area -->
     <main id="main-shop">
-        <div id="shop-rows-container">
-            <!-- Items will be injected here using your new formatting -->
-        </div>
+      <div id="shop-rows-container">
+        <!-- Items will be injected here using your new formatting -->
+      </div>
     </main>
 
     <!-- Product Detail View -->
-    <div id="product-page" style="display:none; grid-template-columns: 380px 1fr; padding: 100px 10%;">
-        <aside class="product-sidebar">
-            <span class="back-link" onclick="showMainShop()" style="cursor:pointer; color:#00f2ff;">← BACK TO SHOP</span>
-            <h1 id="p-name" style="font-family:'Sarpanch';"></h1>
-            <div id="p-price" class="large-price" style="font-size: 2rem; margin: 20px 0;"></div>
-            <label>SELECT SIZE</label>
-            <div id="size-list" class="size-selection-grid" style="display:flex; gap:10px; margin: 20px 0;"></div>
-            <button class="add-to-cart-large" onclick="addToCart()" style="width:100%; padding:20px; background:#00f2ff; font-weight:bold;">ADD TO GEAR BAG</button>
-        </aside>
-        <main class="product-gallery" id="p-gallery" style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;"></main>
+    <div
+      id="product-page"
+      style="
+        display: none;
+        grid-template-columns: 380px 1fr;
+        gap: 60px;
+        padding: 100px 10%;
+        align-items: start;
+      "
+    >
+      <!-- Sidebar -->
+      <aside class="product-sidebar">
+        <span
+          class="back-link"
+          onclick="showMainShop()"
+          style="cursor: pointer; color: #00f2ff"
+          >← BACK TO SHOP</span
+        >
+        <h1 id="p-name" style="font-family: &quot;Sarpanch&quot;"></h1>
+        <div
+          id="p-price"
+          class="large-price"
+          style="font-size: 2rem; margin: 20px 0"
+        ></div>
+        <label>SELECT SIZE</label>
+        <div
+          id="size-list"
+          class="size-selection-grid"
+          style="display: flex; gap: 10px; margin: 20px 0"
+        ></div>
+        <button
+          class="add-to-cart-large"
+          onclick="addToCart()"
+          style="
+            width: 100%;
+            padding: 20px;
+            background: #00f2ff;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+          "
+        >
+          ADD TO GEAR BAG
+        </button>
+      </aside>
+
+      <!-- Gallery Wrapper -->
+      <div
+        class="gallery-wrapper"
+        style="
+          position: relative;
+          width: 100%;
+          max-width: 700px;
+          margin: 0 auto;
+        "
+      >
+        <!-- Left Arrow -->
+        <button
+          class="nav-arrow"
+          onclick="scrollGallery(-1)"
+          style="
+            position: absolute;
+            left: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+          "
+        >
+          &#10094;
+        </button>
+
+        <!-- The Image Container -->
+        <main
+          class="product-gallery"
+          id="p-gallery"
+          style="
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            border-radius: 8px;
+          "
+        >
+          <!-- Images injected here -->
+        </main>
+
+        <!-- Right Arrow -->
+        <button
+          class="nav-arrow"
+          onclick="scrollGallery(1)"
+          style="
+            position: absolute;
+            right: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+          "
+        >
+          &#10095;
+        </button>
+      </div>
     </div>
 
     <!-- Checkout Area -->
-    <div id="checkout-page" style="display:none; padding: 80px 10%;">
-        <div onclick="showMainShop()" style="cursor:pointer; color:#00f2ff; margin-bottom:20px;">← CONTINUE SHOPPING</div>
-        <div class="checkout-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap:50px;">
-            <div class="order-form">
-                <h3>1. SHIPPING DETAILS</h3>
-                <input type="text" placeholder="Full Name" style="width:100%; margin-bottom:10px; padding:10px;">
-                <input type="email" placeholder="Email Address" style="width:100%; margin-bottom:10px; padding:10px;">
-                <h3>2. PAYMENT</h3>
-                <input type="text" placeholder="Card Number" style="width:100%; padding:10px;">
-                <button class="view-btn" onclick="placeOrder()" style="width:100%; margin-top:20px;">COMPLETE PURCHASE</button>
-            </div>
-            <div class="order-summary" style="background:#1a1a1a; padding:20px; border-radius:8px;">
-                <h3>YOUR BAG</h3>
-                <div id="summary-items"></div>
-                <hr>
-                <div id="summary-total" style="font-size:1.5rem; font-family:'Orbitron';"></div>
-            </div>
+    <div id="checkout-page" style="display: none; padding: 80px 10%">
+      <div
+        onclick="showMainShop()"
+        style="cursor: pointer; color: #00f2ff; margin-bottom: 20px"
+      >
+        ← CONTINUE SHOPPING
+      </div>
+      <div
+        class="checkout-grid"
+        style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px"
+      >
+        <div class="order-form">
+          <h3>1. SHIPPING DETAILS</h3>
+          <input
+            type="text"
+            placeholder="Full Name"
+            style="width: 100%; margin-bottom: 10px; padding: 10px"
+          />
+          <input
+            type="email"
+            placeholder="Email Address"
+            style="width: 100%; margin-bottom: 10px; padding: 10px"
+          />
+          <h3>2. PAYMENT</h3>
+          <input
+            type="text"
+            placeholder="Card Number"
+            style="width: 100%; padding: 10px"
+          />
+          <button
+            class="view-btn"
+            onclick="placeOrder()"
+            style="width: 100%; margin-top: 20px"
+          >
+            COMPLETE PURCHASE
+          </button>
         </div>
+        <div
+          class="order-summary"
+          style="background: #1a1a1a; padding: 20px; border-radius: 8px"
+        >
+          <h3>YOUR BAG</h3>
+          <div id="summary-items"></div>
+          <hr />
+          <div
+            id="summary-total"
+            style="font-size: 1.5rem; font-family: &quot;Orbitron&quot;"
+          ></div>
+        </div>
+      </div>
     </div>
 
     <script>
-        const inventory = [
-            { id: 1, name: "MINDBENDER 116C", desc: "The ultimate powder weapon for 2026. Rebuilt for maximum float and stability.", price: 849.95, sizes: ["179", "186", "191"], img: "ski.1jpg" },
-            { id: 2, name: "SUMMIT RIDGE SHELL", desc: "A brand new technical outer layer designed for the harshest alpine conditions.", price: 420.00, sizes: ["S", "M", "L", "XL"], img: "ski1.jpg" },
-            { id: 3, name: "RECON 130 BOOTS", desc: "Precision engineering meets comfort. Built with a high-performance heat-moldable shell.", price: 699.00, sizes: ["26.5", "27.5", "28.5"], img: "ski1.jpg" },
-            { id: 4, name: "SLOPE GOGGLES", desc: "Crystal clear vision with magnetic lens swapping technology for changing light.", price: 185.00, sizes: ["OS"], img: "ski1.jpg" }
-        ];
+      const inventory = [
+        {
+          id: 1,
+          name: "MINDBENDER 116C",
+          desc: "The ultimate powder weapon for 2026. Rebuilt for maximum float and stability.",
+          price: 849.95,
+          sizes: ["179", "186", "191"],
+          img: "ski.jpg", // Main thumbnail for the home list
+          images: ["ski.jpg", "jumpstart.png", "ski.jpg", "ski.jpg"], // The 4 detail images
+        },
+        {
+          id: 2,
+          name: "SUMMIT RIDGE SHELL",
+          desc: "A brand new technical outer layer designed for the harshest alpine conditions.",
+          price: 420.0,
+          sizes: ["S", "M", "L", "XL"],
+          img: "ski1.jpg",
+          images: [
+            "jacket2a.jpg",
+            "jacket2b.jpg",
+            "jacket2c.jpg",
+            "jacket2d.jpg",
+          ],
+        },
+        {
+          id: 3,
+          name: "MINDBENDER 116C",
+          desc: "The ultimate powder weapon for 2026. Rebuilt for maximum float and stability.",
+          price: 849.95,
+          sizes: ["179", "186", "191"],
+          img: "ski.1jpg", // Main thumbnail for the home list
+          images: ["ski1a.jpg", "ski1b.jpg", "ski1c.jpg", "ski1d.jpg"], // The 4 detail images
+        },
+        {
+          id: 4,
+          name: "SUMMIT RIDGE SHELL",
+          desc: "A brand new technical outer layer designed for the harshest alpine conditions.",
+          price: 420.0,
+          sizes: ["S", "M", "L", "XL"],
+          img: "ski1.jpg",
+          images: [
+            "jacket2a.jpg",
+            "jacket2b.jpg",
+            "jacket2c.jpg",
+            "jacket2d.jpg",
+          ],
+        },
+      ];
 
-        let cart = [], activeProduct = null, selectedSize = "";
+      let cart = [],
+        activeProduct = null,
+        selectedSize = "";
 
-        function renderShop() {
-            // Uses your alternating section format
-            document.getElementById('shop-rows-container').innerHTML = inventory.map((p, index) => `
+      function renderShop() {
+        // Uses your alternating section format
+        document.getElementById("shop-rows-container").innerHTML = inventory
+          .map(
+            (p, index) => `
                 <section class="content-section">
                     <div class="text-content">
                         <h2><span class="auto-style1">${p.name}</span></h2>
@@ -121,62 +324,99 @@
                         <img src="${p.img}" alt="${p.name}" onclick="showProduct(${p.id})">
                     </div>
                 </section>
-            `).join('');
-        }
+            `,
+          )
+          .join("");
+      }
 
-        function showProduct(id) {
-            activeProduct = inventory.find(i => i.id === id);
-            selectedSize = ""; 
-            document.getElementById('main-shop').style.display = 'none';
-            document.getElementById('checkout-page').style.display = 'none';
-            document.getElementById('product-page').style.display = 'grid';
-            document.getElementById('p-name').innerText = activeProduct.name;
-            document.getElementById('p-price').innerText = `$${activeProduct.price}`;
-            document.getElementById('size-list').innerHTML = activeProduct.sizes.map(s => `<div class="size-option" style="border:1px solid #fff; padding:10px; cursor:pointer;" onclick="selectSize(this, '${s}')">${s}</div>`).join('');
-            document.getElementById('p-gallery').innerHTML = Array(4).fill(0).map(() => `<img src="${activeProduct.img}" style="width:100%;">`).join('');
-            window.scrollTo(0,0);
-        }
+      function showProduct(id) {
+        activeProduct = inventory.find((i) => i.id === id);
+        selectedSize = "";
 
-        function selectSize(el, s) {
-            document.querySelectorAll('.size-option').forEach(opt => opt.style.background = 'none');
-            el.style.background = '#00f2ff';
-            el.style.color = '#000';
-            selectedSize = s;
-        }
+        // Switch views
+        document.getElementById("main-shop").style.display = "none";
+        document.getElementById("product-page").style.display = "grid";
 
-        function addToCart() {
-            if (!selectedSize) return alert("Please select a size first!");
-            cart.push({ ...activeProduct, size: selectedSize, cartId: Date.now() });
-            document.getElementById('cart-count-badge').innerText = cart.length;
-            document.getElementById('cart-notification').style.display = 'block';
-        }
+        // Set text data
+        document.getElementById("p-name").innerText = activeProduct.name;
+        document.getElementById("p-price").innerText =
+          `$${activeProduct.price}`;
 
-        function showCheckout() {
-            document.getElementById('main-shop').style.display = 'none';
-            document.getElementById('product-page').style.display = 'none';
-            document.getElementById('checkout-page').style.display = 'block';
-            document.getElementById('summary-items').innerHTML = cart.map(item => `<div style="margin-bottom:10px;">${item.name} (${item.size}) - $${item.price}</div>`).join('');
-            const total = cart.reduce((sum, item) => sum + item.price, 0);
-            document.getElementById('summary-total').innerText = `TOTAL: $${total.toFixed(2)}`;
-        }
+        // Render Size Options
+        document.getElementById("size-list").innerHTML = activeProduct.sizes
+          .map(
+            (s) =>
+              `<div class="size-option" onclick="selectSize(this, '${s}')">${s}</div>`,
+          )
+          .join("");
 
-        function placeOrder() {
-            if (cart.length === 0) return alert("Your bag is empty!");
-            alert("Order placed successfully!");
-            cart = [];
-            document.getElementById('cart-count-badge').innerText = '0';
-            showMainShop();
-        }
+        document.getElementById("p-gallery").innerHTML = activeProduct.images
+          .map((imgSrc) => `<img src="${imgSrc}" class="gallery-img">`)
+          .join("");
 
-        function showMainShop() {
-            document.getElementById('main-shop').style.display = 'block';
-            document.getElementById('product-page').style.display = 'none';
-            document.getElementById('checkout-page').style.display = 'none';
-        }
+        window.scrollTo(0, 0);
+      }
 
-        function closeNotif() { document.getElementById('cart-notification').style.display = 'none'; }
-        
-        renderShop();
+      // Function to handle left/right button clicks
+      function scrollGallery(direction) {
+        const gallery = document.getElementById("p-gallery");
+        const scrollAmount = gallery.clientWidth; // Move by one full image width
+        gallery.scrollBy({
+          left: direction * scrollAmount,
+          behavior: "smooth",
+        });
+      }
+
+      function selectSize(el, s) {
+        document
+          .querySelectorAll(".size-option")
+          .forEach((opt) => (opt.style.background = "none"));
+        el.style.background = "#00f2ff";
+        el.style.color = "#000";
+        selectedSize = s;
+      }
+
+      function addToCart() {
+        if (!selectedSize) return alert("Please select a size first!");
+        cart.push({ ...activeProduct, size: selectedSize, cartId: Date.now() });
+        document.getElementById("cart-count-badge").innerText = cart.length;
+        document.getElementById("cart-notification").style.display = "block";
+      }
+
+      function showCheckout() {
+        document.getElementById("main-shop").style.display = "none";
+        document.getElementById("product-page").style.display = "none";
+        document.getElementById("checkout-page").style.display = "block";
+        document.getElementById("summary-items").innerHTML = cart
+          .map(
+            (item) =>
+              `<div style="margin-bottom:10px;">${item.name} (${item.size}) - $${item.price}</div>`,
+          )
+          .join("");
+        const total = cart.reduce((sum, item) => sum + item.price, 0);
+        document.getElementById("summary-total").innerText =
+          `TOTAL: $${total.toFixed(2)}`;
+      }
+
+      function placeOrder() {
+        if (cart.length === 0) return alert("Your bag is empty!");
+        alert("Order placed successfully!");
+        cart = [];
+        document.getElementById("cart-count-badge").innerText = "0";
+        showMainShop();
+      }
+
+      function showMainShop() {
+        document.getElementById("main-shop").style.display = "block";
+        document.getElementById("product-page").style.display = "none";
+        document.getElementById("checkout-page").style.display = "none";
+      }
+
+      function closeNotif() {
+        document.getElementById("cart-notification").style.display = "none";
+      }
+
+      renderShop();
     </script>
-</body>
+  </body>
 </html>
