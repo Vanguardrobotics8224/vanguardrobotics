@@ -1,0 +1,182 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slope Style</title>
+
+    <link rel="icon" type="image/x-icon" href="logo.jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Sarpanch:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-logo">
+		  <a href="index.html" class=nav-link"</a>
+
+            <img src="logo.jpeg" alt="Slpoe Styles" class="img">
+        </div>
+
+        <nav class="header-nav">
+                   <nav class="header-nav" aria-label="Main navigation">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="product.html" class="nav-link">Products</a>
+            <a href="jumpstart.html" class="nav-link">Jumpstart</a>
+<div class="cart-icon" onclick="showCheckout()" style="cursor: pointer">
+          🛒 CART (<span id="cart-count-badge">0</span>)        </nav>
+
+        </nav>
+    </header>
+
+
+
+    <main id="main-shop">
+        <div id="shop-rows-container"></div>
+    </main>
+
+    <div id="product-page" style="display: none;">
+        <aside class="product-sidebar">
+            <span class="back-link" onclick="showMainShop()">← BACK TO STORE</span>
+            <h1 id="p-name"></h1>
+            <div class="series-tag">2026 SERIES</div>
+            <div id="p-price" class="large-price"></div>
+            <p id="p-desc" class="auto-style1"></p> <!-- Description above sizes -->
+            <label>SELECT SIZE</label>
+            <div id="size-list" class="size-selection-grid"></div>
+            <button class="add-to-cart-large" onclick="addToCart()">ADD TO CART</button>
+        </aside>
+        <div class="gallery-wrapper">
+            <main class="product-gallery" id="p-gallery"></main>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="size-modal" class="custom-modal"><div class="modal-content"><h2>PLEASE CHOOSE SIZE</h2><button onclick="closeModal('size-modal')" class="modal-btn">PROCEED</button></div></div>
+    <div id="success-modal" class="custom-modal"><div class="modal-content"><h2>ADDED TO CART!</h2><button onclick="viewCartAndClose()" class="modal-btn">VIEW CART</button><button onclick="closeModal('success-modal')" class="modal-btn">KEEP SHOPPING</button></div></div>
+    <div id="empty-cart-modal" class="custom-modal"><div class="modal-content"><h2>LETS GO SHOPPING</h2><button onclick="closeEmptyModal()" class="modal-btn">KEEP SHOPPING</button></div></div>
+
+    <div id="checkout-page" style="display: none;">
+        <div class="continue-shopping" onclick="showMainShop()">← CONTINUE SHOPPING</div>
+        <div class="order-summary">
+            <h3>YOUR BAG</h3>
+            <div id="summary-items"></div>
+            <div id="summary-total" class="subtotal-display"></div>
+            <button id="proceed-to-form-btn" onclick="revealShippingForm()" class="purchase-btn">PROCEED TO CHECK OUT</button>
+        </div>
+        <div id="shipping-form" class="order-form" style="display:none; margin-top:40px;">
+            <input type="text" placeholder="Full Name"><input type="email" placeholder="Email Address">
+            <button onclick="placeOrder()" class="purchase-btn">COMPLETE PURCHASE</button>
+        </div>
+    </div>
+
+    <script>
+        const inventory = [
+            { id: 1, name: "Powder Twin Tip", desc: "The ultimate powder weapon for 2026. Rebuilt for maximum float and stability.", price: 799.99, sizes: ["179", "186", "191"], img: "ski.jpg", images: ["ski.jpg", "jumpstart.png"] },
+            { id: 2, name: "Racer twin tip", desc: "A brand new technical outer layer designed for the harshest alpine conditions.", price: 799.99, sizes: ["S", "M", "L", "XL"], img: "ski.jpg", images: ["ski.jpg", "ski.jpg"] },
+            { id: 3, name: "The care package", desc: "Everything you need for a full season in the back country.", price: 899.99, sizes: ["179", "186", "191"], img: "ski.jpg", images: ["ski.jpg", "ski.jpg"] },
+            { id: 4, name: "Carbon poles", desc: "Lightweight, high-strength carbon fiber for elite performance.", price: 135.00, sizes: ["S", "M", "L", "XL"], img: "ski.jpg", images: ["ski.jpg", "ski.jpg"] }
+        ];
+
+        let cart = JSON.parse(localStorage.getItem('slopeStyleCart')) || [];
+
+        function saveCart() {
+            localStorage.setItem('slopeStyleCart', JSON.stringify(cart));
+            updateCartUI();
+        }
+
+        function renderShop() {
+            const container = document.getElementById("shop-rows-container");
+            container.innerHTML = inventory.map((p, index) => {
+                const isEven = index % 2 === 0;
+                // row-reverse for even, row for odd to flip images
+                const direction = isEven ? 'flex-direction: row-reverse' : 'flex-direction: row';
+                return `
+                <section class="shop-section" style="${direction};">
+                    <div class="shop-text">
+                        <h2>${p.name}</h2><div class="series-tag">2026 SERIES</div>
+                        <div class="shop-price">$${p.price.toFixed(2)}</div>
+                        <p>${p.desc}</p>
+                        <button onclick="openProduct(${p.id})" class="view-details-btn">VIEW DETAILS</button>
+                    </div>
+                    <div class="shop-img-container"><img src="${p.img}" class="product-preview-img"></div>
+                </section>`;
+            }).join("");
+        }
+
+        function openProduct(id) {
+            activeProduct = inventory.find(p => p.id === id);
+            selectedSize = "";
+            document.getElementById("main-shop").style.display = "none";
+            document.getElementById("checkout-page").style.display = "none";
+            document.getElementById("product-page").style.display = "grid";
+            document.getElementById("p-name").innerText = activeProduct.name;
+            document.getElementById("p-price").innerText = `$${activeProduct.price.toFixed(2)}`;
+            document.getElementById("p-desc").innerText = activeProduct.desc;
+            document.getElementById("size-list").innerHTML = activeProduct.sizes.map(s => `<button onclick="selectSize('${s}', this)" class="size-btn">${s}</button>`).join("");
+            document.getElementById("p-gallery").innerHTML = activeProduct.images.map(img => `<img src="${img}" class="gallery-img">`).join("");
+            window.scrollTo(0,0);
+        }
+
+        function selectSize(size, btn) {
+            selectedSize = size;
+            document.querySelectorAll(".size-btn").forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+        }
+
+        function addToCart() {
+            if (!selectedSize) { document.getElementById("size-modal").style.display = "flex"; return; }
+            cart.push({ ...activeProduct, size: selectedSize });
+            saveCart();
+            document.getElementById("success-modal").style.display = "flex";
+        }
+
+        function updateCartUI() {
+            document.getElementById("cart-count-badge").innerText = cart.length;
+            const summary = document.getElementById("summary-items");
+            const grouped = cart.reduce((acc, i) => {
+                const key = `${i.id}-${i.size}`;
+                if (!acc[key]) acc[key] = { ...i, qty: 1 }; else acc[key].qty++;
+                return acc;
+            }, {});
+            summary.innerHTML = Object.values(grouped).map(i => `
+                <div class="summary-item">
+                    <div class="item-left">
+                        <span class="item-name-box">${i.name} (${i.size})</span>
+                        <span class="qty-tag">QTY: ${i.qty}</span>
+                        <button class="remove-btn" onclick="removeItemByOne(${i.id}, '${i.size}')">REMOVE</button>
+                    </div>
+                    <span>$${(i.price * i.qty).toFixed(2)}</span>
+                </div>`).join("");
+            const sub = cart.reduce((s, i) => s + i.price, 0).toFixed(2);
+            document.getElementById("summary-total").innerHTML = `<small>SUBTOTAL:</small> $${sub}`;
+        }
+
+        function removeItemByOne(id, size) {
+            const idx = cart.findIndex(i => i.id == id && i.size == size);
+            if (idx !== -1) { cart.splice(idx, 1); saveCart(); if(cart.length === 0) showMainShop(); }
+        }
+
+        function viewCartAndClose() { closeModal('success-modal'); showCheckout(); }
+        function closeModal(id) { document.getElementById(id).style.display = "none"; }
+        function showCheckout() {
+            if (cart.length === 0) { document.getElementById("empty-cart-modal").style.display = "flex"; return; }
+            document.getElementById("main-shop").style.display = "none";
+            document.getElementById("product-page").style.display = "none";
+            document.getElementById("checkout-page").style.display = "block";
+            updateCartUI();
+        }
+        function revealShippingForm() { document.getElementById("shipping-form").style.display = "block"; }
+        function showMainShop() { document.getElementById("product-page").style.display = "none"; document.getElementById("checkout-page").style.display = "none"; document.getElementById("main-shop").style.display = "block"; }
+        function closeEmptyModal() { closeModal('empty-cart-modal'); showMainShop(); }
+        function placeOrder() { alert("Order placed!"); cart = []; saveCart(); showMainShop(); }
+
+        renderShop();
+        updateCartUI();
+    </script>
+</body>
+</html>
