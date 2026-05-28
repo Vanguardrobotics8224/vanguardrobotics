@@ -275,6 +275,7 @@ header h1 {
     width: 100%; 
     padding: 20px;
     box-sizing: border-box;
+    vertical-align: middle;
     background-color: #1E1F66;
 }
 

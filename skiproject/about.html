@@ -1,67 +1,99 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Slope Style</title>
 
-    <link rel="icon" type="image/x-icon" href="logo.jpeg">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Sarpanch:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="styles.css">
-</head>
+    <link rel="icon" type="image/x-icon" href="logo.jpeg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Sarpanch:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-<body>
-
+  <body>
     <!-- Header -->
     <header class="main-header">
-        <div class="header-logo">
-		  <a href="index.html" class=nav-link"</a>
+      <div class="header-logo">
+        <a href="index.html" class="nav-link">
+          <img src="logo.jpeg" alt="Slope Styles" class="img"
+        /></a>
+      </div>
 
-            <img src="logo.jpeg" alt="Slpoe Styles" class="img">
-        </div>
-
-        <nav class="header-nav">
-                   <nav class="header-nav" aria-label="Main navigation">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="about.html" class="nav-link">About</a>
-            <a href="product.html" class="nav-link">Products</a>
-            <a href="jumpstart.html" class="nav-link">Jumpstart</a>
-<div class="cart-icon" onclick="showCheckout()" style="cursor: pointer">
-          🛒 CART (<span id="cart-count-badge">0</span>)        </nav>
-
+      <nav class="header-nav">
+        <nav class="header-nav" aria-label="Main navigation">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="product.html" class="nav-link">Products</a>
+          <a href="jumpstart.html" class="nav-link">Jumpstart</a>
+          <div
+            class="cart-icon"
+            onclick="showCheckout()"
+            style="cursor: pointer"
+          >
+            <a href="product.html#open-cart" class="cart-nav-btn">
+              🛒 CART (<span id="cart-count-badge">0</span>)
+            </a>
+          </div>
         </nav>
+      </nav>
     </header>
 
+    <div class="content-section about-section-3">
+      <div class="text-content">
+        <div class="sponsors-container">
+          <h1 class="sponsors-title">About Us</h1>
 
-<div class="content-section about-section-3">
-    <div class="text-content">
-
-    <div class="sponsors-container">
-        <h1 class="sponsors-title">About Us</h1>
-
-        <p><span class="auto-style1">We're a group of friends from Montreal that love to ski. We each have multiple different types of skis. When we were gliding on the mounting, and we wanted to do a bit of everything whether it be off trail, snow park or even powder we were getting frustrated that we either have to change skis or just not be at our best potential since we don't have the best ski for the conditions. We decided to found this Slope Style, a ski that can do everything. Whether it be park, off trail or even powder you will be at your full potential.</span></p>
+          <p>
+            <span class="auto-style1"
+              >We're a group of friends from Montreal that love to ski. We each
+              have multiple different types of skis. When we were gliding on the
+              mounting, and we wanted to do a bit of everything whether it be
+              off trail, snow park or even powder we were getting frustrated
+              that we either have to change skis or just not be at our best
+              potential since we don't have the best ski for the conditions. We
+              decided to found this Slope Style, a ski that can do everything.
+              Whether it be park, off trail or even powder you will be at your
+              full potential.</span
+            >
+          </p>
+        </div>
+      </div>
+      <div class="photo-content">
+        <img src="7a.png" alt="Ski Props" />
+      </div>
     </div>
-</div>
-    <div class="photo-content">
-        <img src="7.png" alt="Ski Props">
-    </div>
-</div>
 
-	 <footer>
-    <div class="footer-content">
+    <footer>
+      <div class="footer-content">
         <h2>Customer Support</h2>
         <div class="footer-contact">
-            <a href="tel:+1234567890">Phone: (514)-918-5516</a>
-            <a href="mailto:jdunn@pedago.vanguardquebec.qc.ca">Email: info@slopestyle.ca</a>
-            <p class="footer-address">
-                <a href="https://google.com" target="_blank">
-                    533 Vanguardian way Montreal, Quebec, J7W 5C8
-                </a>
-            </p>
+          <a href="tel:+1234567890">Phone: (514)-918-5516</a>
+          <a href="mailto:jdunn@pedago.vanguardquebec.qc.ca"
+            >Email: info@slopestyle.ca</a
+          >
+          <p class="footer-address">
+            <a href="https://google.com" target="_blank">
+              533 Vanguardian way Montreal, Quebec, J7W 5C8
+            </a>
+          </p>
         </div>
-    </div>
-		 <div class="footer-bottom">
-        <p><span class="auto-style1">&copy; <script>document.write(new Date().getFullYear())</script> Slope Style. All rights reserved.</span></p>
-			 </div>
-</footer>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          <span class="auto-style1"
+            >&copy;
+            <script>
+              document.write(new Date().getFullYear());
+            </script>
+            Slope Style. All rights reserved.</span
+          >
+        </p>
+      </div>
+    </footer>
+    <script src="cart.js"></script>
+  </body>
+</html>

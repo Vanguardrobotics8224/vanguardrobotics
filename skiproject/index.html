@@ -1,87 +1,107 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Slope Style</title>
 
-	<link rel="icon" type="image/x-icon" href="logo.jpeg">
+    <link rel="icon" type="image/x-icon" href="logo.jpeg" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Sarpanch:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="styles.css">
-</head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Sarpanch:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
 
-<body>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
+  <body>
     <!--Header-->
     <header class="main-header">
-        <div class="header-logo">
-			<a href="index.html" class=nav-link">
-			<img src="logo.jpeg" alt="Ski logo" class="img"></a>
+      <div class="header-logo">
+        <a href="index.html" class="nav-link">
+          <img src="logo.jpeg" alt="Ski logo" class="img"
+        /></a>
+      </div>
+
+      <nav id="wideNav" class="header-nav" aria-label="Main navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="product.html" class="nav-link">Products</a>
+        <a href="jumpstart.html" class="nav-link">Jumpstart</a>
+        <div class="cart-icon" onclick="showCheckout()" style="cursor: pointer">
+          <a href="product.html#open-cart" class="cart-nav-btn">
+            🛒 CART (<span id="cart-count-badge">0</span>)
+          </a>
         </div>
-
-        <nav id="wideNav" class="header-nav" aria-label="Main navigation">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="about.html" class="nav-link">About</a>
-            <a href="product.html" class="nav-link">Products</a>
-            <a href="jumpstart.html" class="nav-link">Jumpstart</a>
-<div class="cart-icon" onclick="showCheckout()" style="cursor: pointer">
-          🛒 CART (<span id="cart-count-badge">0</span>)
-        </nav>
-
+      </nav>
     </header>
 
-<!--Video-->
-<div class="video-hero-section">
-    <video autoplay muted loop playsinline preload="auto" class="full-width-video">
-        <source src="VideoProject6.mp4" type="video/mp4">
+    <!--Video-->
+    <div class="video-hero-section">
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        class="full-width-video"
+      >
+        <source src="VideoProject6.mp4" type="video/mp4" />
         Your browser does not support the video tag.
-    </video>
-</div>
+      </video>
+    </div>
 
-<div style="height: 20vh;"></div> 
+    <div style="height: 20vh"></div>
 
     <section class="photo-button-gallery">
-        <div class="gallery-container">
-            <a href="about.html" class="photo-button-item">
-                <img src="7.png" alt="Robot">
-                <div class="photo-title">ABOUT US</div>
-            </a>
+      <div class="gallery-container">
+        <a href="about.html" class="photo-button-item">
+          <img src="7.png" alt="Robot" />
+          <div class="photo-title">ABOUT US</div>
+        </a>
 
-            <a href="product.html" class="photo-button-item">
-                <img src="5.png" alt="robot">
-                <div class="photo-title">SHOP NOW</div>
-            </a>
+        <a href="product.html" class="photo-button-item">
+          <img src="5.png" alt="robot" />
+          <div class="photo-title">SHOP NOW</div>
+        </a>
 
-            <a href="jumpstart.html" class="photo-button-item">
-                <img src="8.png" alt="sponsor">
-                <div class="photo-title">Jumpstart</div>
-            </a>
-        </div>
-		 <div>
-			 <div>
-			<div>
-		 </div>
-		 </div>
+        <a href="jumpstart.html" class="photo-button-item">
+          <img src="8.png" alt="sponsor" />
+          <div class="photo-title">Jumpstart</div>
+        </a>
+      </div>
     </section>
-	</body>
-	
-	 <footer>
+
+    <script src="cart.js"></script>
+  </body>
+
+  <footer>
     <div class="footer-content">
-        <h2>Customer Support</h2>
-        <div class="footer-contact">
-            <a href="tel:+1234567890">Phone: (514)-918-5516</a>
-            <a href="mailto:jdunn@pedago.vanguardquebec.qc.ca">Email: info@slopestyle.ca</a>
-            <p class="footer-address">
-                <a href="https://google.com" target="_blank">
-                    533 Vanguardian way Montreal, Quebec, J7W 5C8
-                </a>
-            </p>
-        </div>
+      <h2>Customer Support</h2>
+      <div class="footer-contact">
+        <a href="tel:+1234567890">Phone: (514)-918-5516</a>
+        <a href="mailto:jdunn@pedago.vanguardquebec.qc.ca"
+          >Email: info@slopestyle.ca</a
+        >
+        <p class="footer-address">
+          <a href="https://google.com" target="_blank">
+            533 Vanguardian way Montreal, Quebec, J7W 5C8
+          </a>
+        </p>
+      </div>
     </div>
-		 <div class="footer-bottom">
-        <p><span class="auto-style1">&copy; <script>document.write(new Date().getFullYear())</script> Slope Style. All rights reserved.</span></p>
-			 </div>
-</footer>
+    <div class="footer-bottom">
+      <p>
+        <span class="auto-style1"
+          >&copy;
+          <script>
+            document.write(new Date().getFullYear());
+          </script>
+          Slope Style. All rights reserved.</span
+        >
+      </p>
+    </div>
+  </footer>
+</html>
