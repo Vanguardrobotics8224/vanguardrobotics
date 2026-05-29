@@ -1,121 +1,225 @@
-// cart.js (Continued - Replace or append these sections to your existing code)
+// cart.js
+const inventory = [
+  {
+    id: 1,
+    name: "Powder Twin Tip",
+    desc: "An all-in-one ski made for powdery slopes and slick terrain parks. With a simple click, your twin-tip end can be removed for powder conditions. This ski reduces the number of skis you need to bring to the mountain.",
+    price: 799.99,
+    sizes: ["179 cm", "186 cm", "191 cm"],
+    img: "4.png",
+    images: ["5.png", "9.png"],
+  },
+  {
+    id: 2,
+    name: "Racer twin tip",
+    desc: "The perfect ski for competitive skiers. Engineered specifically for competitions with its uniform size, the addition of the twin-tip design creates an extra level of stability and fun for those park days on the slopes.",
+    price: 799.99,
+    sizes: ["179 cm", "186 cm", "191 cm"],
+    img: "1.png",
+    images: ["3.png", "skis - 2.png"],
+  },
+  {
+    id: 3,
+    name: "The care package",
+    desc: "Our classic twin-tip powder ski with a detachable end. This bundle comes with a matching bag for your skis and poles, both dry and wet temperature wax, an application tool, and cleaning rags.",
+    price: 899.99,
+    sizes: ["179 cm", "186 cm", "191 cm"],
+    img: "skiski.PNG",
+    images: ["4.png", "9.png"],
+  },
+];
 
-/**
- * Generates an incremented, formatted order confirmation string
- * Starts at "000 000 001" and increments by 1 with each purchase
- */
-function generateOrderConfirmationNumber() {
-  // Retrieve the next number from storage or default to 1 if it's the first order
-  let nextOrderNum = parseInt(localStorage.getItem("slopeStyleOrderCount")) || 1;
-  
-  // Convert number to string and pad it with leading zeros to match 9 digits total
-  let paddedNum = nextOrderNum.toString().padStart(9, '0');
-  
-  // Format the 9-digit string into chunks of three: "000 000 001"
-  let formattedNum = `${paddedNum.substring(0, 3)} ${paddedNum.substring(3, 6)} ${paddedNum.substring(6, 9)}`;
-  
-  // Increment the counter and save it back to localStorage for the next purchase
-  localStorage.setItem("slopeStyleOrderCount", nextOrderNum + 1);
-  
-  return formattedNum;
+let cart = JSON.parse(localStorage.getItem("slopeStyleCart")) || [];
+let activeProduct = null;
+let selectedSize = "";
+
+function saveCart() {
+  localStorage.setItem("slopeStyleCart", JSON.stringify(cart));
+  updateCartUI();
 }
 
-/**
- * Validates all checkout input fields and processes the order placement
- */
-function placeOrder() {
-  // Select all form element nodes from the DOM
-  const firstName = document.getElementById("billing-first-name");
-  const lastName = document.getElementById("billing-last-name");
-  const email = document.getElementById("billing-email");
-  const address = document.getElementById("shipping-address");
-  const cardNum = document.getElementById("card-number");
-  const cardCvv = document.getElementById("card-cvv");
-  const cardExpiry = document.getElementById("card-expiry");
-  const cardName = document.getElementById("card-name");
+function renderShop() {
+  const container = document.getElementById("shop-rows-container");
+  if (!container) return; // Safely skip if not on the shop page
 
-  // Verify all DOM inputs exist and strip surrounding whitespace to ensure real values
-  if (!firstName?.value.trim() || 
-      !lastName?.value.trim() || 
-      !email?.value.trim() || 
-      !address?.value.trim() || 
-      !cardNum?.value.trim() || 
-      !cardCvv?.value.trim() || 
-      !cardExpiry?.value.trim() || 
-      !cardName?.value.trim()) {
-    
-    alert("Please fill out all missing details before submitting your order.");
-    return; // Halt execution early so order cannot be processed
+  const currentYear = new Date().getFullYear();
+
+  container.innerHTML = inventory
+    .map((p, index) => {
+      const isEven = index % 2 === 0;
+      const direction = isEven
+        ? "flex-direction: row-reverse"
+        : "flex-direction: row";
+      return `
+        <section class="shop-section" style="${direction};">
+            <div class="shop-text">
+                <h2>${p.name}</h2><div class="series-tag">${currentYear} SERIES</div>
+                <div class="shop-price">$${p.price.toFixed(2)}</div>
+                <button onclick="openProduct(${p.id})" class="view-details-btn">VIEW DETAILS</button>
+            </div>
+            <div class="shop-img-container"><img src="${p.img}" alt="${p.name}" class="product-preview-img"></div>
+        </section>`;
+    })
+    .join("");
+}
+
+
+function openProduct(id) {
+  activeProduct = inventory.find((p) => p.id === id);
+  selectedSize = "";
+  if (document.getElementById("main-shop"))
+    document.getElementById("main-shop").style.display = "none";
+  if (document.getElementById("checkout-page"))
+    document.getElementById("checkout-page").style.display = "none";
+  if (document.getElementById("product-page"))
+    document.getElementById("product-page").style.display = "grid";
+
+  document.getElementById("p-name").innerText = activeProduct.name;
+  document.getElementById("p-price").innerText =
+    `$${activeProduct.price.toFixed(2)}`;
+  document.getElementById("p-desc").innerText = activeProduct.desc;
+  document.getElementById("size-list").innerHTML = activeProduct.sizes
+    .map(
+      (s) =>
+        `<button onclick="selectSize('${s}', this)" class="size-btn">${s}</button>`,
+    )
+    .join("");
+  document.getElementById("p-gallery").innerHTML = activeProduct.images
+    .map((img) => `<img src="${img}" class="gallery-img">`)
+    .join("");
+  window.scrollTo(0, 0);
+}
+
+function selectSize(size, btn) {
+  selectedSize = size;
+  document
+    .querySelectorAll(".size-btn")
+    .forEach((b) => b.classList.remove("selected"));
+  btn.classList.add("selected");
+}
+
+function addToCart() {
+  if (!selectedSize) {
+    document.getElementById("size-modal").style.display = "flex";
+    return;
   }
+  cart.push({ ...activeProduct, size: selectedSize });
+  saveCart();
+  document.getElementById("success-modal").style.display = "flex";
+}
 
-  // Generate the sequential sequential ID tag
-  const confirmationNumber = generateOrderConfirmationNumber();
+function updateCartUI() {
+  // Update the badge count if it exists on the current page
+  const badge = document.getElementById("cart-count-badge");
+  if (badge) badge.innerText = cart.length;
 
-  // Show the requested completion alert window
-  alert(`Thank you for your order!\nYour order confirmation number is: ${confirmationNumber}`);
+  // Update the checkout side panels if they exist on the current page
+  const summary = document.getElementById("summary-items");
+  if (!summary) return;
 
-  // Clear all text input spaces across the form fields
-  [firstName, lastName, email, address, cardNum, cardCvv, cardExpiry, cardName].forEach(input => {
-    if (input) input.value = "";
-  });
+  const grouped = cart.reduce((acc, i) => {
+    const key = `${i.id}-${i.size}`;
+    if (!acc[key]) acc[key] = { ...i, qty: 1 };
+    else acc[key].qty++;
+    return acc;
+  }, {});
 
-  // Empty out active items arrays and reset storage nodes
+  summary.innerHTML = Object.values(grouped)
+    .map(
+      (i) => `
+        <div class="summary-item">
+            <div class="item-left">
+                <span class="item-name-box">${i.name} (${i.size})</span>
+                <span class="qty-tag">QTY: ${i.qty}</span>
+                <button class="remove-btn" onclick="removeItemByOne(${i.id}, '${i.size}')">REMOVE</button>
+            </div>
+            <span>$${(i.price * i.qty).toFixed(2)}</span>
+        </div>`,
+    )
+    .join("");
+
+  const sub = cart.reduce((s, i) => s + i.price, 0).toFixed(2);
+  if (document.getElementById("summary-total")) {
+    document.getElementById("summary-total").innerHTML =
+      `<small>SUBTOTAL:</small> $${sub}`;
+  }
+}
+
+function removeItemByOne(id, size) {
+  const idx = cart.findIndex((i) => i.id == id && i.size == size);
+  if (idx !== -1) {
+    cart.splice(idx, 1);
+    saveCart();
+    if (cart.length === 0 && document.getElementById("main-shop"))
+      showMainShop();
+  }
+}
+
+function viewCartAndClose() {
+  closeModal("success-modal");
+  showCheckout();
+}
+defineGlobalCloseModal = function (id) {
+  document.getElementById(id).style.display = "none";
+};
+window.closeModal = defineGlobalCloseModal;
+
+function showCheckout() {
+  if (cart.length === 0) {
+    document.getElementById("empty-cart-modal").style.display = "flex";
+    return;
+  }
+  if (document.getElementById("main-shop"))
+    document.getElementById("main-shop").style.display = "none";
+  if (document.getElementById("product-page"))
+    document.getElementById("product-page").style.display = "none";
+  if (document.getElementById("checkout-page"))
+    document.getElementById("checkout-page").style.display = "block";
+  updateCartUI();
+}
+function revealShippingForm() {
+  document.getElementById("shipping-form").style.display = "block";
+}
+function showMainShop() {
+  if (document.getElementById("product-page"))
+    document.getElementById("product-page").style.display = "none";
+  if (document.getElementById("checkout-page"))
+    document.getElementById("checkout-page").style.display = "none";
+  if (document.getElementById("main-shop"))
+    document.getElementById("main-shop").style.display = "block";
+}
+function closeEmptyModal() {
+  closeModal("empty-cart-modal");
+  showMainShop();
+}
+function placeOrder() {
+  alert("Order placed!");
   cart = [];
   saveCart();
   showMainShop();
 }
 
-/**
- * Injects the complete input markup directly into the shipping form if missing from the HTML template
- */
-function ensureCheckoutFieldsExist() {
-  const formContainer = document.getElementById("shipping-form");
-  if (!formContainer) return;
-
-  // Only inject if fields do not exist yet in the document markup
-  if (!document.getElementById("billing-first-name")) {
-    formContainer.innerHTML = `
-      <div class="checkout-form-grid" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
-        <h3>Customer & Shipping Details</h3>
-        <div style="display: flex; gap: 10px;">
-          <input type="text" id="billing-first-name" placeholder="First Name" style="flex: 1; padding: 8px;">
-          <input type="text" id="billing-last-name" placeholder="Last Name" style="flex: 1; padding: 8px;">
-        </div>
-        <input type="email" id="billing-email" placeholder="Email Address" style="padding: 8px;">
-        <input type="text" id="shipping-address" placeholder="Full Delivery Address" style="padding: 8px;">
-        
-        <h3 style="margin-top: 10px;">Payment Information</h3>
-        <input type="text" id="card-name" placeholder="Name on Card" style="padding: 8px;">
-        <input type="text" id="card-number" placeholder="Credit Card Number" style="padding: 8px;" maxlength="16">
-        <div style="display: flex; gap: 10px;">
-          <input type="text" id="card-expiry" placeholder="MM/YY" style="flex: 1; padding: 8px;" maxlength="5">
-          <input type="text" id="card-cvv" placeholder="CVV" style="flex: 1; padding: 8px;" maxlength="4">
-        </div>
-      </div>
-      <button onclick="placeOrder()" class="submit-order-btn" style="padding: 12px; width: 100%; cursor: pointer;">PLACE ORDER</button>
-    `;
-  }
-}
-
-// Intercept your DOM loaded routine to verify form placement logic loops
+// Fire initial functions automatically when any page loads
 document.addEventListener("DOMContentLoaded", () => {
   renderShop();
   updateCartUI();
   checkUrlForCartRequest();
-  ensureCheckoutFieldsExist(); // Inject form elements gracefully if missing
 });
 
-<!-- Inside your #checkout-page element -->
-<div id="shipping-form">
-  <input type="text" id="billing-first-name">
-  <input type="text" id="billing-last-name">
-  <input type="email" id="billing-email">
-  <input type="text" id="shipping-address">
-  
-  <input type="text" id="card-name">
-  <input type="text" id="card-number">
-  <input type="text" id="card-expiry">
-  <input type="text" id="card-cvv">
-  
-  <button onclick="placeOrder()">PLACE ORDER</button>
-</div>
+function checkUrlForCartRequest() {
+  // If the URL contains '#open-cart' and the checkout panel exists on this page
+  if (
+    window.location.hash === "#open-cart" &&
+    document.getElementById("checkout-page")
+  ) {
+    // Clear the hash tag quietly so it doesn't break future page refreshes
+    history.replaceState(
+      "",
+      document.title,
+      window.location.pathname + window.location.search,
+    );
+
+    // Launch the internal view checkout function safely
+    showCheckout();
+  }
+}
