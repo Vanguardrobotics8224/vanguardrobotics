@@ -16,7 +16,7 @@ const inventory = [
     price: 799.99,
     sizes: ["179 cm", "186 cm", "191 cm"],
     img: "1.png",
-    images: ["3.png", "skis - 2.png"],
+    images: ["3.png", "ski2a.png"],
   },
   {
     id: 3,
@@ -24,7 +24,7 @@ const inventory = [
     desc: "Our classic twin-tip powder ski with a detachable end. This bundle comes with a matching bag for your skis and poles, both dry and wet temperature wax, an application tool, and cleaning rags.",
     price: 899.99,
     sizes: ["179 cm", "186 cm", "191 cm"],
-    img: "skiski.PNG",
+    img: "ski10a.png",
     images: ["4.png", "9.png"],
   },
 ];
