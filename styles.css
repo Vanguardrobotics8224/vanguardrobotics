@@ -1,4 +1,4 @@
-.auto-style1 {
+﻿.auto-style1 {
 	color: #D3D3D3;
 	font-size: 1.05em;
 }
@@ -8,24 +8,23 @@
 html, body {
     margin: 0;
     padding: 0;
-    overflow-x: hidden; 
+    overflow-x: hidden; /* Hide horizontal overflow */
     min-height: 100%; 
     width: 100%;
-    background-color: #1E1F66;
 }
 
 body {
-    font-family: 'Orbitron', sans-serif; 
+    background-color: #072418; /* Main dark green background */
+    font-family: 'Orbitron', sans-serif; /* Assumed font link exists in HTML <head> */
     font-weight: 400;
-    padding-top: 100px; 
-    background-color: #1E1F66;
+    padding-top: 100px; /* Offset for fixed header height */
 }
 
 .content-text h2 {
     font-size: 2.5em;
     margin-top: 0px; 
     margin-bottom: 25px; 
-    color: #FFFFFF; 
+    color: #FFFFFF; /* black */
 }
 
 .content-text h3 {
@@ -51,12 +50,12 @@ p {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #1E1F66;
+    background-color: #003720;
     color: white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     position: fixed;
     top: 0;
-    width: 98%;
+    width: 100%;
     z-index: 1000;
 }
 
@@ -93,6 +92,9 @@ p {
     transition: color 0.3s, background-color 0.3s;
 }
 
+
+
+/* Desktop: show nav inline */
 @media (min-width: 768px){
   .header-logo img{height: 80px;}
   .main-header{ padding: 10px 15px;}
@@ -123,6 +125,7 @@ p {
     width: 100vw;
     height: 100vh;
     object-fit: cover;
+    z-index: -1;
 }
 
 .video-text-overlay {
@@ -137,7 +140,7 @@ p {
     align-items: center;
     text-align: center;
     color: white;
-    background-color: rgba(30, 31, 102, 0.4);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .video-text-overlay h1 {
@@ -147,7 +150,7 @@ p {
 }
 .photo-button-gallery {
     padding: 40px 0;
-    background-color: #1E1F66;
+    background-color: #072418;
 }
 
 .gallery-container {
@@ -221,7 +224,8 @@ header h1 {
     flex-wrap: wrap; 
     position: relative;
     width: 100%; 
-    background-image: linear-gradient(rgba(30, 31, 102, 0.85), rgba(30, 31, 102, 0.85)), url('images/about.jpg');
+    
+    background-image: linear-gradient(rgba(50, 50, 50, 0.85), rgba(50, 50, 50, 0.85)), url('images/about.jpg');
     background-size: cover; 
     background-position: center; 
     background-attachment: fixed; 
@@ -254,7 +258,7 @@ header h1 {
 
 
 .content-sections-container { 
-    background-color: #1E1F66; 
+    background-color: #072418; 
     padding: 80px 0;
 }
 
@@ -265,9 +269,10 @@ header h1 {
     max-width: 1200px;
     margin: 40px auto;
     padding: 20px;
-    background-color: #1E1F66; 
+    background-color: #003720; 
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	font-color: #ffffff;
 }
 
 
@@ -275,12 +280,11 @@ header h1 {
     width: 100%; 
     padding: 20px;
     box-sizing: border-box;
-    vertical-align: middle;
-    background-color: #1E1F66;
+	font-color: #ffffff;
 }
 
 .text-content {
-    background-color: #1E1F66;
+	font-color: #ffffff;
 }
 
 .content-text p {
@@ -291,32 +295,35 @@ header h1 {
     font-family: 'Sarpanch', sans-serif;
 }
 
+/* The 'reverse' class puts text on the left and image on the right */
 .content-section.reverse {
     flex-direction: row-reverse; 
 }
 
+
+/* --- 7. Full-Screen 50/50 Split Sections (SECTION C Styles) --- */
 .split-container {
     display: flex;
-    height: 100dvh; 
+    height: 100dvh; /* Each container takes the full screen height */
     width: 100vw;  
 }
 
 .split-panel {
-    flex: 1; 
+    flex: 1; /* Makes both panels equal width (50% each) */
     display: flex;
     justify-content: center; 
     align-items: center; 
     box-sizing: border-box; 
-    overflow-y: auto; 
+    overflow-y: auto; /* Allows scrolling if content within the panel is too long */
 }
 
 .left-panel {
-    background-color: #1E1F66; 
+    background-color: #008000; /* Green background for the text side */
     color: white; 
 }
 
 .right-panel {
-    background-color: #1E1F66; 
+    background-color: #333; /* Darker background for the image side */
 }
 
 .content-wrapper {
@@ -333,6 +340,10 @@ header h1 {
     max-height: 90vh;
 }
 
+
+/* --- 8. Responsive Adjustments (Media Queries) --- */
+
+/* Desktop 60/40 layout applied at 768px+ */
 @media (min-width: 768px) { 
     .content-section .text-content {
         width: 60%;
@@ -340,700 +351,338 @@ header h1 {
     .content-section .photo-content {
         width: 40%;
     }
+    /* Specific reverse layout for section 2 of the about page */
     .about-section-2 .text-content {
         order: 1; 
+		 font-color: #ffffff;
     }
     .about-section-2 .photo-content {
         order: 0;
     }
 }
 
+/* Mobile Adjustments (Ensures stacking on mobile < 992px) */
 @media (max-width: 992px) {
-    .content-section {
+    /* Stacks standard content sections vertically */
+    .content-section, .content-section.reverse {
         flex-direction: column;
     }
-}
 
-footer {
-    background-color: #001F54;
-    color: white;
-    padding: 60px 20px;
-    text-align: center;
-    border-top: 1px solid #112240;
-    font-family: 'Orbitron', sans-serif;
-}
+    .content-text, .content-image {
+        padding: 10px;
+    }
 
-.footer-content h2 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
+    /* Stacks 50/50 split sections vertically */
+    .split-container {
+        flex-direction: column; 
+        height: auto; /* Allows scrolling on mobile */
+    }
 
-.footer-contact {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    font-family: 'Sarpanch', sans-serif;
-}
-
-.footer-contact a {
-    color: #D3D3D3;
-    text-decoration: none;
-    transition: color 0.3s ease;
-    font-size: 1.1rem;
-}
-
-.footer-contact a:hover {
-    color: #00f2ff; /* Matches your accent cyan */
-}
-
-.footer-address {
-    color: #D3D3D3;
-    margin-top: 10px;
-    font-style: normal;
-}
-
-
-/* Restricts the image size and handles the transition */
-.product-preview-img {
-    width: 100%;
-    max-width: 400px; /* Adjust this number to change the visual size */
-    height: auto;
-    object-fit: contain; /* Keeps the aspect ratio from stretching */
+    .split-panel {
+        height: 50vh; /* Each panel takes half the viewport height on mobile */
+    }
     
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), filter 0.5s ease, box-shadow 0.5s ease;
-    filter: drop-shadow(0 0 0px rgba(0, 242, 255, 0)); 
+    /* Stats Section mobile adjustments */
+    .stats-container {
+        flex-direction: column;
+    }
+    .count-num {
+        font-size: 4em;
+    }
+    .stat-item p {
+        font-size: 1.2em;
+    }
+}
+footer {
+    background-color: #003720; /* Darker green background */
+    color: white;
+    padding: 10px 10px;
+    font-family: 'Sarpanch', sans-serif; /* Matches your navigation font */
+    margin-top: 20px; /* Adds space above the footer */
 }
 
-/* This triggers when you hover over the product row */
-.shop-row:hover .product-preview-img {
-    transform: scale(1.08); /* Slight zoom in */
-    filter: drop-shadow(0 0 20px rgba(0, 242, 255, 0.6)); /* Cyan glow to match your accent color */
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 20px;
 }
 
-/* Optional: Slight pulse animation for the price when hovering the row */
-.shop-row:hover h1 {
-    color: #00f2ff; /* Price turns cyan on hover */
-    transition: color 0.3s ease;
-}
-
-
-
-.header-logo .img {
-    height: 50px;
-}
-
-.nav-link {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 15px;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-}
-
-/* --- PRODUCT GRID --- */
-.shop-section {
-    display: flex; 
-    align-items: center; 
-    padding: 60px 12%; 
-    gap: 60px;
-}
-
-.shop-section img {
-    width: 100%; 
-    border-radius: 4px; 
-    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-}
-
-/* --- PRODUCT DETAIL PAGE --- */
-#product-page {
-    display: none; 
-    grid-template-columns: 380px 1fr; 
-    gap: 60px; 
-    padding: 100px 10%; 
-    align-items: start;
-}
-
-.nav-arrow { 
-    background: rgba(255,255,255,0.2); 
-    border: none; 
-    color: #000; 
-    padding: 20px 15px; 
-    cursor: pointer; 
-    font-size: 1.5rem; 
-    transition: 0.3s; 
-    border-radius: 4px;
-}
-
-.nav-arrow:hover { 
-    background: #fff; 
-    color: #000; 
-}
-
-#p-gallery {
-    display: flex; 
-    overflow-x: auto; 
-    scroll-snap-type: x mandatory; 
-    scroll-behavior: smooth; 
-    border-radius: 8px;
-    -ms-overflow-style: none; /* IE/Edge */
-    scrollbar-width: none; /* Firefox */
-}
-
-#p-gallery::-webkit-scrollbar { 
-    display: none; /* Chrome/Safari */
-}
-
-/* --- MODAL & NOTIFICATIONS --- */
-#size-modal {
-    display: none; 
-    position: fixed; 
-    inset: 0; 
-    background: rgba(0,0,0,0.85); 
-    z-index: 2000; 
-    align-items: center; 
-    justify-content: center;
-}
-
-.modal-content {
-    background: #1E1F66; 
-    border: 2px solid #fff; 
-    padding: 40px; 
-    text-align: center; 
-    max-width: 400px; 
-    width: 90%;
-}
-
-.cart-icon {
-    cursor: pointer; 
-    color: #000; 
-    font-family: 'Orbitron'; 
-    margin-left: 20px; 
-    font-weight: bold; 
-    background: #fff; 
-    padding: 5px 15px; 
-    border-radius: 4px;
-    transition: 0.2s;
-}
-
-.cart-icon:hover {
-    background: #000;
-    color: #fff;
-}
-
-/* --- CHECKOUT --- */
-.order-form input {
-    width: 100%; 
-    margin-bottom: 10px; 
-    padding: 15px; 
-    background: rgba(255,255,255,0.1); 
-    border: 1px solid rgba(255,255,255,0.2); 
-    color: #fff;
-    box-sizing: border-box;
-}
-
-.order-summary {
-    background: rgba(0,0,0,0.3); 
-    padding: 30px; 
-    border-radius: 8px;
-}
-
-/* --- GLOBAL --- */
-body { 
-    background-color: #1E1F66; 
-    color: #fff; 
-    margin: 0; 
-    font-family: 'Arial', sans-serif; 
-    overflow-x: hidden; 
-}
-
-/* --- SHOP MAIN --- */
-.shop-btn { padding: 18px 45px; background: #fff; color: #000; border: none; font-family: 'Orbitron'; font-weight: 900; font-size: 1rem; cursor: pointer; text-transform: uppercase; }
-
-/* --- PRODUCT PAGE --- */
-#product-page { display: none; grid-template-columns: 380px 1fr; gap: 60px; padding: 100px 10%; align-items: start; }
-.back-link { cursor: pointer; color: #fff; font-family: 'Orbitron'; font-size: 1.2rem; font-weight: 900; border-bottom: 2px solid #fff; padding-bottom: 5px; display: inline-block; }
-#p-name { font-family: 'Sarpanch'; margin-top: 30px; font-size: 2.2rem; }
-.large-price { margin: 20px 0; font-family: 'Orbitron'; font-weight: 900; color: #fff; font-size: 2.8rem; }
-.size-btn { padding: 15px 30px; background: transparent; border: 2px solid #fff; color: #fff; cursor: pointer; font-family: 'Orbitron'; font-weight: bold; }
-.size-btn.selected { background: #fff; color: #000; }
-.add-to-cart-large { width: 100%; padding: 20px; background: #fff; color: #000; font-weight: 900; font-family: 'Orbitron'; font-size: 1.2rem; border: none; cursor: pointer; text-transform: uppercase; margin-top: 20px; }
-.gallery-wrapper { position: relative; width: 100%; max-width: 700px; margin: 0 auto; }
-.product-gallery { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; border-radius: 8px; scrollbar-width: none; }
-.product-gallery::-webkit-scrollbar { display: none; }
-.gallery-img { min-height: 100%; height: 450px; object-fit: cover; scroll-snap-align: start; }
-.nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.2); border: none; color: #000; padding: 20px 15px; cursor: pointer; font-size: 1.5rem; z-index: 10; }
-.nav-arrow:first-child { left: -60px; }
-.nav-arrow:last-child { right: -60px; }
-
-/* --- MODALS --- */
-.custom-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 2000; align-items: center; justify-content: center; }
-.modal-content { background: #1E1F66; border: 2px solid #fff; padding: 40px; text-align: center; max-width: 450px; width: 90%; }
-.modal-content h2 { font-family: 'Orbitron'; color: #fff; margin-bottom: 20px; font-size: 1.2rem; }
-.modal-btn { padding: 15px 30px; background: #fff; color: #000; border: none; font-family: 'Orbitron'; font-weight: 900; cursor: pointer; font-size: 1rem; text-transform: uppercase; margin: 10px; }
-.outline-btn { background: transparent; color: #fff; border: 1px solid #fff; }
-
-/* --- CHECKOUT --- */
-#checkout-page { display: none; padding: 80px 10%; }
-.continue-shopping { cursor: pointer; color: #000; margin-bottom: 20px; font-family: 'Orbitron'; background: #fff; display: inline-block; padding: 8px 20px; font-weight: 900; }
-.checkout-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
-.order-form input { width: 100%; margin-bottom: 10px; padding: 15px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; }
-.purchase-btn { width: 100%; margin-top: 20px; padding: 20px; background: #fff; color: #000; border: none; font-weight: bold; cursor: pointer; font-family: 'Orbitron'; text-transform: uppercase; }
-.order-summary { background: rgba(0,0,0,0.3); padding: 30px; border-radius: 8px; }
-.summary-item { display: flex; justify-content: space-between; margin-bottom: 15px; font-family: 'Orbitron'; font-size: 0.9rem; }
-#summary-total { font-size: 2rem; font-family: 'Orbitron'; color: #fff; border-left: 5px solid #fff; padding-left: 15px; }
-
-/* --- UPDATED TITLES & SERIES TAG --- */
-
-/* Ensures all titles on the product page use Orbitron */
-#product-page h1, 
-#product-page h2, 
-#product-page h3,
-.shop-text h2 {
-    font-family: 'Orbitron', sans-serif !important;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-/* Re-implementing the 2026 SERIES black box tag */
-.series-tag {
-    background-color: #000000; /* Solid black box */
-    color: #ffffff;           /* White text */
-    display: inline-block;    /* Keeps the box tight around the text */
-    padding: 4px 10px;        /* Padding to match previous size */
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.85rem;
-    letter-spacing: 3px;
-    margin-top: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
-/* Optional: Slight glow effect for titles on hover to match the theme */
-#p-name:hover {
-    color: #00f2ff;
-    text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
-    transition: 0.3s ease;
-}
-/* --- PRICE STYLING & SYMMETRY --- */
-
-.shop-price, .large-price {
-    font-family: 'Orbitron', sans-serif !important;
-    font-size: 3.2rem; /* Increased size */
-    font-weight: 900;
-    color: #fff;
-    /* Adjusting margins for equal spacing */
-    margin-top: 25px;    /* Space between Series Tag and Price */
-    margin-bottom: 25px; /* Space between Price and Description */
-    line-height: 1;
-    transition: color 0.3s ease;
-}
-
-/* Ensuring the Series Tag also has consistent spacing from the Title */
-.series-tag {
-    background-color: #000000;
-    color: #ffffff;
-    display: inline-block;
-    padding: 4px 10px;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.85rem;
-    letter-spacing: 3px;
-    margin-top: 25px; /* Space between Title and Series Tag */
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
-/* Matching Title Font */
-.shop-text h2, #p-name {
-    font-family: 'Orbitron', sans-serif !important;
-    font-size: 3 rem;
-    margin: 0; /* Let the Series Tag margin-top handle the gap */
-}
-/* --- PRODUCT PAGE SIDEBAR ADJUSTMENTS --- */
-
-#product-page {
-    grid-template-columns: 420px 1fr; /* Slightly wider sidebar for better fit */
-    gap: 80px;
-}
-
-/* 1. Back button more room with title */
-.back-link {
-    cursor: pointer;
-    color: #fff;
-    font-family: 'Orbitron';
-    font-size: 1.1rem;
-    font-weight: 900;
-    border-bottom: 2px solid #fff;
-    padding-bottom: 5px;
-    display: inline-block;
-    margin-bottom: 50px; /* Increased gap before title */
-}
-
-/* 2. Smaller title to fit on 1 line */
-#p-name {
-    font-family: 'Orbitron', sans-serif !important;
-    font-size: 1.8rem; /* Scaled down to prevent wrapping */
-    font-weight: 900;
-    margin: 0;
-    white-space: nowrap; /* Forces one line */
-    letter-spacing: 1px;
-}
-
-/* 3. Smaller price */
-.large-price {
-    font-family: 'Orbitron', sans-serif !important;
-    font-size: 2.2rem; /* Scaled down to match the new title size */
-    font-weight: 900;
-    margin: 20px 0 40px 0;
-}
-
-/* 4. Size boxes room side to side */
-.size-selection-grid {
-    display: flex; /* Switched to flex for better side-to-side control */
-    gap: 15px;    /* Increased gap between boxes */
-    margin: 20px 0 40px 0;
-}
-
-.size-btn {
-    flex: 1; /* Makes boxes equal width */
-    padding: 15px 10px; /* More horizontal breathing room inside */
-    background: transparent;
-    border: 2px solid #fff;
-    color: #fff;
-    font-family: 'Orbitron';
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-/* --- SIZE BUTTON HOVER STATE --- */
-
-.size-btn {
+.footer-section {
     flex: 1;
-    padding: 15px 10px;
-    background: transparent;
-    border: 2px solid #fff;
-    color: #fff;
-    font-family: 'Orbitron';
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease; /* Smooth transition for the color swap */
+    min-width: 250px;
+
 }
 
-.size-btn:hover {
-    background-color: #000000; /* Box turns black */
-    color: #ffffff;           /* Text stays/turns white */
-    border-color: #ffffff;    /* Keeps the frame visible */
-}
-
-/* Ensure the 'Selected' state stays distinct if you click it */
-.size-btn.selected {
-    background-color: #ffffff;
-    color: #000000;
-}
-/* --- BUTTON HOVER STATES --- */
-
-/* Targets the main shop button and the sidebar add-to-cart button */
-.view-details-btn, 
-.add-to-cart-large {
-    background-color: #ffffff; /* Starts solid white */
-    color: #000000;           /* Starts black text */
-    border: 2px solid #ffffff; 
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 900;
+.footer-section h3 {
+    color: #FFFFFF; /* Accent color for titles */
+    margin-bottom: 15px;
+    font-size: 1.2em;
     text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.3s ease; /* Smooth color swap */
 }
 
-/* Hover effect: Box turns black, text turns white */
-.view-details-btn:hover, 
-.add-to-cart-large:hover {
-    background-color: #000000; 
-    color: #ffffff;
-    border-color: #ffffff; /* Keeps white border visible against black */
-}
-
-/* Adjusting the view-details-btn specific padding to match your previous look */
-.view-details-btn {
-    padding: 18px 45px;
-    font-size: 1rem;
-}
-
-/* Adjusting the add-to-cart-large specific padding */
-.add-to-cart-large {
-    padding: 20px;
-    font-size: 1.2rem;
-    margin-top: 20px;
-}
-/* --- UNIFIED BUTTON HOVER LOGIC --- */
-
-/* Targets the Main Shop button, Sidebar Add to Cart, and Proceed/Keep Shopping buttons */
-.view-details-btn, 
-.add-to-cart-large,
-.modal-btn,
-.purchase-btn {
-    background-color: #ffffff !important; /* Start solid white */
-    color: #000000 !important;           /* Start black text */
-    border: 2px solid #ffffff !important; 
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 900;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-/* Hover Effect: Flip to Black background with White text */
-.view-details-btn:hover, 
-.add-to-cart-large:hover,
-.modal-btn:hover,
-.purchase-btn:hover {
-    background-color: #000000 !important; 
-    color: #ffffff !important;
-    border-color: #ffffff !important;
-}
-
-/* Specific padding for the Main Shop "View Details" button */
-.view-details-btn {
-    padding: 18px 45px;
-    font-size: 1rem;
-    display: inline-block;
-}
-
-/* Specific padding for the Sidebar "Add to Cart" button */
-.add-to-cart-large {
-    padding: 20px;
-    font-size: 1.2rem;
-    margin-top: 20px;
-}
-/* --- CART LIST STYLING --- */
-.summary-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.item-info {
-    display: flex;
-    flex-direction: column;
-}
-
-.item-name {
-    font-family: 'Orbitron';
-    font-weight: bold;
-    font-size: 1.1rem;
-}
-
-.item-qty {
-    font-size: 0.8rem;
-    color: #888;
-    margin-top: 5px;
-}
-
-.item-price {
-    font-family: 'Orbitron';
-    font-weight: 900;
-}
-
-.subtotal-display {
-    font-size: 2.2rem;
-    font-family: 'Orbitron';
-    text-align: right;
-    margin-top: 20px;
-    color: #fff;
-}
-
-.subtotal-display small {
-    font-size: 0.9rem;
+.footer-section p, .footer-section a {
+    color: #FFFFFF;
+    text-decoration: none;
+    line-height: 1.5;
     display: block;
-    color: #888;
-}
-
-/* --- EMPTY CART MODAL --- */
-.custom-modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.9);
-    z-index: 3000;
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-content {
-    background: #1E1F66;
-    border: 2px solid #fff;
-    padding: 50px;
-    text-align: center;
-}
-
-.continue-shopping {
-    background: #fff;
-    color: #000;
-    display: inline-block;
-    padding: 10px 20px;
-    font-family: 'Orbitron';
-    font-weight: bold;
-    cursor: pointer;
-    margin-bottom: 30px;
-}
-.checkout-grid {
-    display: flex;
-    flex-direction: column; /* Stacks the bag and form vertically */
-    align-items: center;
-    gap: 40px;
-}
-
-.order-summary {
-    width: 100%;
-    max-width: 800px; /* Makes the bag list wider and easier to read */
-    background: rgba(0,0,0,0.3);
-    padding: 40px;
-    border-radius: 8px;
-}
-
-.order-form {
-    width: 100%;
-    max-width: 800px;
-    padding: 40px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-}
-/* Forces Orbitron on everything in the sidebar except the description <p> tag */
-.product-sidebar label,
-.product-sidebar span,
-.product-sidebar h1,
-.product-sidebar div:not(.auto-style1), 
-.size-btn,
-.add-to-cart-large {
-    font-family: 'Orbitron', sans-serif !important;
-}
-
-/* Specific styling for the new Remove button hover */
-.remove-item-btn:hover {
-    background: #fff !important;
-    color: #000 !important;
-}
-
-/* Ensure the description remains Serif/Times New Roman as per previous style */
-.product-sidebar p, .product-sidebar .auto-style1 {
-    font-family: "Times New Roman", Times, serif !important;
-}
-/* Styling for the small text Remove button */
-.remove-btn {
-    background: transparent;
-    border: 1px solid #fff;
-    color: #fff;
-    font-family: 'Orbitron', sans-serif !important;
-    font-size: 0.65rem;
-    padding: 4px 10px;
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-    letter-spacing: 1px;
-}
-
-/* Hover effect: Fills with white, text turns black */
-.remove-btn:hover {
-    background-color: #fff;
-    color: #000;
-}
-
-/* Ensure subtotal labels stay consistent */
-.subtotal-display small {
-    display: block;
-    font-size: 0.9rem;
-    color: #888;
     margin-bottom: 5px;
+    font-size: 1em;
 }
 
-/* --- CRITICAL PRODUCT AREA LOCKDOWN --- */
-
-/* Targets every element in the product page EXCEPT the description */
-#product-page h1, 
-#product-page .large-price, 
-#product-page label, 
-#product-page span, 
-#product-page button {
-    font-family: 'Orbitron', sans-serif !important;
-    text-transform: uppercase !important;
+.footer-section a:hover {
+    text-decoration: underline;
+	 font-weight: bold;
 }
 
-/* Specific fix for the Product Title and Price */
-#p-name, #p-price {
-    font-family: 'Orbitron', sans-serif !important;
-    font-weight: 900 !important;
+.social-link {
+    /* Add styles for social media icons if you use them */
+    display: inline;
+    margin-right: 10px;
 }
 
-/* Ensure the Size Grid buttons also use Orbitron */
-.size-btn {
-    font-family: 'Orbitron', sans-serif !important;
-    font-weight: bold !important;
-}
-
-/* KEEP the description in Times New Roman as requested */
-#product-page p, 
-#product-page .auto-style1 {
-    font-family: "Times New Roman", Times, serif !important;
-    text-transform: none !important;
-}
-/* --- ONLY NEW/UPDATED CSS --- */
-
-@import url('https://googleapis.com');
-
-/* Bulletproof Font Lockdown */
-h1, h2, h3, label, span, button, .cart-icon, .shop-price, .large-price, .subtotal-display, .nav-link {
-    font-family: 'Orbitron', sans-serif !important;
-    text-transform: uppercase !important;
-}
-
-/* Exception for description only */
-p, .auto-style1, #p-desc {
-    font-family: "Times New Roman", serif !important;
-    text-transform: none !important;
-    color: #D3D3D3;
-}
-
-/* Cart Item Layout Fix */
-.summary-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-.item-left {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.item-name-box {
-    font-family: 'Orbitron' !important;
-    font-weight: bold;
-}
-
-.qty-tag {
-    font-size: 0.8rem;
+.footer-bottom {
+    text-align: center;
+    margin-top: 5px;
+    padding-top: 0px;
+    border-top: 1px solid #072418; /* A subtle line above copyright */
+    font-size: 0.8em;
     color: #888;
 }
 
-.remove-btn {
-    background: transparent;
-    border: 1px solid #fff;
-    color: #fff;
-    font-family: 'Orbitron' !important;
-    font-size: 0.6rem;
-    padding: 4px 8px;
-    cursor: pointer;
-    transition: 0.3s;
+/* Responsive adjustment for footer on smaller screens */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .footer-section p, .footer-section a {
+        display: inline; /* Keep links inline on mobile if centered */
+    }
+}
+/* --- Sponsors Page Styles --- */
+
+/* Container for the page content, accounting for fixed header */
+.sponsors-container {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.remove-btn:hover {
-    background: #fff;
-    color: #000;
+/* H1 title styles */
+.sponsors-title {
+    text-align: center;
+    font-size: 4em;
+    color: white;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #003720;
+    padding-bottom: 10px;
+}
+
+/* H2 tier titles styles */
+.tier-title {
+    text-align: center;
+    font-size: 2.5em;
+    color: #000000; /* Your accent color */
+    margin-top: 50px;
+    margin-bottom: 0px;
+}
+
+/* Base style for all logo rows using Flexbox */
+.logo-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between images */
+    padding: 0 20px;
+}
+
+/* Image container (the link) needs to have display flex/inline-flex to work with gap */
+.logo-link {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    text-decoration: none; /* Removes default link underline */
+}
+
+.logo-row img {
+    height: auto;
+    object-fit: contain; /* Prevents logos from stretching */
+    transition: transform 0.3s ease;
+}
+
+.logo-row img:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+/* Platinum Tier: 70% width */
+.platinum-row .logo-link {
+    /* calc() ensures 70% width minus half the gap size for centering */
+    width: calc(70% - 10px); 
+    max-width: 500px; /* Optional max size for very large screens */
+}
+
+/* Gold Tier: 50% width each */
+.gold-row .logo-link {
+    /* calc() ensures 50% width minus half the gap size */
+    width: calc(50% - 10px);
+}
+
+/* Silver Tier: Equal width (approx 33.3%) */
+.silver-row .logo-link {
+    /* calc() ensures 33.3% width minus the gap spacing */
+    width: calc(33.3% - 14px); 
+}
+
+/* Responsive adjustments for mobile: stack images */
+@media (max-width: 768px) {
+    .platinum-row .logo-link,
+    .gold-row .logo-link,
+    .silver-row .logo-link {
+        width: 100%; /* Images stack vertically and take full width on mobile */
+        max-width: 300px; /* Optional size constraint for mobile */
+    }
+
+    .sponsors-title {
+        font-size: 2.5em;
+    }
+    
+    .tier-title {
+        font-size: 2em;
+    }
+}
+.scroll-container {
+  display: flex;
+  overflow-x: auto; /* Enables horizontal scroll bar */
+  white-space: nowrap;
+  gap: 10px; /* Space between images */
+  padding-bottom: 15px; /* Space for the scrollbar */
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory; /* Optional: snaps to images */
+}
+
+.scroll-container a {
+  flex: 0 0 calc(20% - 10px); /* Shows 5 items at once */
+  scroll-snap-align: start;
+}
+
+.scroll-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.3s;
+}
+
+.scroll-container img:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Custom scrollbar styling (Optional) */
+.scroll-container::-webkit-scrollbar {
+  height: 8px;
+}
+.scroll-container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+/* CSS for Magazine Wrap & Columns */
+.magazine-content {
+  column-count: 2; /* Optional: Creates two-column magazine text */
+  column-gap: 30px;
+  line-height: 1.6;
+}
+
+.float-right {
+  float: right;
+  width: 40%;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+.pull-quote {
+  font-size: 1.5rem;
+  font-style: italic;
+  border-left: 4px solid #333;
+  padding-left: 20px;
+  margin: 20px 0;
+  column-span: all; /* Spans across both columns if using columns */
+}
+/* Styling the Arrows */
+.post-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+  padding: 20px 0;
+  border-top: 1px solid #ddd;
+}
+
+.nav-arrow {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.nav-arrow:hover {
+  color: #007bff;
+}
+
+/* Optional: "Sticky" Floating Arrows on the sides */
+/*
+.left-arrow { position: fixed; left: 20px; top: 50%; }
+.right-arrow { position: fixed; right: 20px; top: 50%; }
+*/
+.full-screen-image {
+  /* Set your photo as a background */
+  background-image: url('your-image-url.jpg');
+  
+  /* Make it fill the entire screen */
+  width: 100vw;   /* 100% of viewport width */
+  height: 100vh;  /* 100% of viewport height */
+  
+  /* Ensure the image covers the area without stretching */
+  background-size: cover;
+  background-position: center;
+  
+  /* Optional: keeps image still as you scroll */
+  background-attachment: fixed; 
+}
+
+/* Ensure no default page margins create gaps */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 992px) {
+    .stats-container {
+        /* Mobile fixes */
+        flex-direction: column; 
+        padding: 40px 20px; /* Reduced from 50px */
+        background-attachment: scroll; /* 'fixed' causes glitches/zoom issues on mobile */
+        background-position: center center;
+    }
+
+    .stat-item {
+        width: 100%;
+        margin: 0;
+        padding: 30px 0; /* Huge fix: changed from 150px to 30px */
+        min-width: unset;
+        border-bottom: 1px solid rgba(211, 211, 211, 0.2); /* Optional: adds a separator */
+    }
+
+    .stat-item:last-child {
+        border-bottom: none;
+    }
+
+    .count-num {
+        font-size: 3.5em; /* Scale down the giant 5em font for small screens */
+    }
 }
