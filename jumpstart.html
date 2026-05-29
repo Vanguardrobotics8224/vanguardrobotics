@@ -1,0 +1,168 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slope Style</title>
+
+    <link rel="icon" type="image/x-icon" href="logo.jpeg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Sarpanch:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header class="main-header">
+      <div class="header-logo">
+        <a href="index.html" class="nav-link"></a>
+
+        <img src="logo.jpeg" alt="Jumpstart Logo" class="img" />
+      </div>
+
+      <nav class="header-nav">
+        <nav class="header-nav" aria-label="Main navigation">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="product.html" class="nav-link">Products</a>
+          <a href="jumpstart.html" class="nav-link">Jumpstart</a>
+          <div
+            class="cart-icon"
+            onclick="showCheckout()"
+            style="cursor: pointer"
+          >
+            <a href="product.html#open-cart" class="cart-nav-btn">
+              🛒 CART (<span id="cart-count-badge">0</span>)
+            </a>
+          </div>
+        </nav>
+      </nav>
+    </header>
+
+    <div class="content-section about-section-3">
+      <div class="text-content">
+        <div class="sponsors-container">
+          <h1 class="sponsors-title">JUMPSTART</h1>
+
+          <p>
+            <span class="auto-style1"
+              >We are proud to donate 10% of our sales to the Jumpstart Foundation.
+Canadian Tire Jumpstart Charities is a national charity committed to ensuring that every child has the opportunity to experience the life-changing benefits of organized sport and physical activity. Recognizing that financial barriers should never stand in the way of play, the foundation provides funding to families in financial need to help cover costs associated with registration, equipment, and transportation.Beyond individual grants, Jumpstart invests in large-scale infrastructure projects, such as the Jumpstart Inclusive Play Project, which creates accessible playgrounds and multi-sport courts where children of all abilities can play side-by-side. Since its inception in 2005, the foundation has helped millions of kids across Canada get off the sidelines and into the game, fostering a generation that is healthier, more confident, and more connected to their community.If you wish to donate, please click the link below to support the Jumpstart Foundation.</span
+            >
+          </p>
+        </div>
+      </div>
+      <div class="photo-content">
+        <img src="jumpstart.png" alt="Description of photo 3" />
+      </div>
+    </div>
+
+    <!-- Red Jumpstart Call-to-Action Box -->
+    <div class="jumpstart-cta-container">
+      <!-- Updated Link -->
+      <a
+        href="https://jumpstart.canadiantire.ca/"
+        target="_blank"
+        class="jumpstart-link"
+      >
+        <div class="jumpstart-red-box">
+          <div class="jumpstart-content">
+            <h2>SUPPORT JUMPSTART</h2>
+            <p>Help kids get off the sidelines and into the game.</p>
+          </div>
+          <div class="jumpstart-arrow">❯</div>
+        </div>
+      </a>
+    </div>
+
+    <style>
+      /* Container spacing */
+      .jumpstart-cta-container {
+        margin: 80px auto;
+        max-width: 900px;
+        padding: 0 20px;
+      }
+
+      /* The Link Wrapper */
+      .jumpstart-link {
+        text-decoration: none;
+        display: block;
+      }
+
+      /* The Red Box */
+      .jumpstart-red-box {
+        background-color: #e21f26; /* Official Jumpstart Red */
+        padding: 50px 40px;
+        border-radius: 4px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 2px solid #e21f26;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* Hover Effect: Flips to black background with white border */
+      .jumpstart-red-box:hover {
+        background-color: #000;
+        border-color: #fff;
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+      }
+
+      /* Text Styling */
+      .jumpstart-content h2 {
+        font-family: "Orbitron", sans-serif !important;
+        color: #fff !important;
+        margin: 0 0 10px 0;
+        font-size: 2.2rem;
+        letter-spacing: 2px;
+        font-weight: 900;
+      }
+
+      .jumpstart-content p {
+        font-family: "Orbitron", sans-serif !important;
+        color: #fff !important;
+        margin: 0;
+        font-size: 1rem;
+        opacity: 0.9;
+        letter-spacing: 1px;
+      }
+
+      .jumpstart-arrow {
+        color: #fff;
+        font-size: 3rem;
+        font-weight: bold;
+      }
+    </style>
+
+  <footer>
+    <div class="footer-content">
+      <h2>Customer Support</h2>
+      <div class="footer-contact">
+        <a href="tel:+1234567890">Phone: (514)-918-5516</a>
+        <a href="mailto:jdunn@pedago.vanguardquebec.qc.ca"
+          >Email: info@slopestyle.com</a
+        >
+        <p class="footer-address">
+          <a href="https://www.google.com/maps/place/Vanguard+School/@45.4920106,-73.6886474,17z/data=!3m1!4b1!4m6!3m5!1s0x4cc9220a8bcf0347:0x29bd63a6c5567fed!8m2!3d45.4920069!4d-73.684034!16s%2Fm%2F0g5srjc?entry=ttu&g_ep=EgoyMDI2MDUyNi4wIKXMDSoASAFQAw%3D%3D" target="_blank">
+5935 Chem. de la Côte-de-Liesse, Saint-Laurent, QC H4T 1C3
+          </a>
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>
+        <span class="auto-style1"
+          >&copy;
+          <script>
+            document.write(new Date().getFullYear());
+          </script>
+          Slope Style. All rights reserved.</span
+        >
+      </p>
+    </div>
+  </footer>
+</html>

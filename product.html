@@ -1,0 +1,153 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slope Style</title>
+
+    <link rel="icon" type="image/x-icon" href="logo.jpeg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Sarpanch:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header class="main-header">
+      <div class="header-logo">
+        <a href="index.html" class="nav-link"></a>
+
+        <img src="logo.jpeg" alt="Slpoe Styles" class="img" />
+      </div>
+
+      <nav class="header-nav">
+        <nav class="header-nav" aria-label="Main navigation">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="product.html" class="nav-link">Products</a>
+          <a href="jumpstart.html" class="nav-link">Jumpstart</a>
+          <div
+            class="cart-icon"
+            onclick="showCheckout()"
+            style="cursor: pointer"
+          >
+            🛒 CART (<span id="cart-count-badge">0</span>)
+          </div>
+        </nav>
+      </nav>
+    </header>
+
+    <main id="main-shop">
+      <div id="shop-rows-container"></div>
+    </main>
+
+    <div id="product-page" style="display: none">
+      <aside class="product-sidebar">
+        <span class="back-link" onclick="showMainShop()">← BACK TO STORE</span>
+        <h1 id="p-name"></h1>
+        <div class="series-tag">2026 SERIES</div>
+        <div id="p-price" class="large-price"></div>
+        <p id="p-desc" class="auto-style1"></p>
+        <!-- Description above sizes -->
+        <label>SELECT SIZE</label>
+        <div id="size-list" class="size-selection-grid"></div>
+        <button class="add-to-cart-large" onclick="addToCart()">
+          ADD TO CART
+        </button>
+      </aside>
+      <div class="gallery-wrapper">
+        <main class="product-gallery" id="p-gallery"></main>
+      </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="size-modal" class="custom-modal">
+      <div class="modal-content">
+        <h2>PLEASE CHOOSE SIZE</h2>
+        <button onclick="closeModal('size-modal')" class="modal-btn">
+          PROCEED
+        </button>
+      </div>
+    </div>
+    <div id="success-modal" class="custom-modal">
+      <div class="modal-content">
+        <h2>ADDED TO CART!</h2>
+        <button onclick="viewCartAndClose()" class="modal-btn">VIEW CART</button
+        ><button onclick="closeModal('success-modal')" class="modal-btn">
+          KEEP SHOPPING
+        </button>
+      </div>
+    </div>
+    <div id="empty-cart-modal" class="custom-modal">
+      <div class="modal-content">
+        <h2>LETS GO SHOPPING</h2>
+        <button onclick="closeEmptyModal()" class="modal-btn">
+          KEEP SHOPPING
+        </button>
+      </div>
+    </div>
+
+    <div id="checkout-page" style="display: none">
+      <div class="continue-shopping" onclick="showMainShop()">
+        ← CONTINUE SHOPPING
+      </div>
+      <div class="order-summary">
+        <h3>YOUR BAG</h3>
+        <div id="summary-items"></div>
+        <div id="summary-total" class="subtotal-display"></div>
+        <button
+          id="proceed-to-form-btn"
+          onclick="revealShippingForm()"
+          class="purchase-btn"
+        >
+          PROCEED TO CHECK OUT
+        </button>
+      </div>
+      <div
+        id="shipping-form"
+        class="order-form"
+        style="display: none; margin-top: 40px"
+      >
+        <input type="text" placeholder="Full Name" /><input
+          type="email"
+          placeholder="Email Address"
+        />
+        <button onclick="placeOrder()" class="purchase-btn">
+          COMPLETE PURCHASE
+        </button>
+      </div>
+    </div>
+
+    <script src="cart.js"></script>
+
+	    <footer>
+    <div class="footer-content">
+      <h2>Customer Support</h2>
+      <div class="footer-contact">
+        <a href="tel:+1234567890">Phone: (514)-918-5516</a>
+        <a href="mailto:jdunn@pedago.vanguardquebec.qc.ca"
+          >Email: info@slopestyle.com</a
+        >
+        <p class="footer-address">
+          <a href="https://www.google.com/maps/place/Vanguard+School/@45.4920106,-73.6886474,17z/data=!3m1!4b1!4m6!3m5!1s0x4cc9220a8bcf0347:0x29bd63a6c5567fed!8m2!3d45.4920069!4d-73.684034!16s%2Fm%2F0g5srjc?entry=ttu&g_ep=EgoyMDI2MDUyNi4wIKXMDSoASAFQAw%3D%3D" target="_blank">
+5935 Chem. de la Côte-de-Liesse, Saint-Laurent, QC H4T 1C3
+          </a>
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>
+        <span class="auto-style1"
+          >&copy;
+          <script>
+            document.write(new Date().getFullYear());
+          </script>
+          Slope Style. All rights reserved.</span
+        >
+      </p>
+    </div>
+  </footer>
+</html>
