@@ -193,10 +193,80 @@ function closeEmptyModal() {
   showMainShop();
 }
 function placeOrder() {
-  alert("Order placed!");
+  const firstName = document.getElementById("cust-first-name").value.trim();
+  const lastName = document.getElementById("cust-last-name").value.trim();
+  const email = document.getElementById("cust-email").value.trim();
+  const shippingAddress = document.getElementById("ship-address").value.trim();
+  const cardNumber = document.getElementById("card-num").value.trim();
+  const cardExpiry = document.getElementById("card-expiry").value.trim();
+  const cardCcv = document.getElementById("card-ccv").value.trim();
+  
+  const sameAsShipping = document.getElementById("same-as-shipping").checked;
+  let billingAddress = shippingAddress;
+  
+  if (!sameAsShipping) {
+    billingAddress = document.getElementById("bill-address").value.trim();
+    if (!billingAddress) {
+      alert("Please enter your billing address.");
+      return;
+    }
+  }
+
+  if (!firstName || !lastName || !email || !shippingAddress || !cardNumber || !cardExpiry || !cardCcv) {
+    alert("Please fill out all required checkout fields correctly.");
+    return;
+  }
+
+  // 1. Generate the random 6-digit confirmation number
+  const confirmationNumber = Math.floor(100000 + Math.random() * 900000);
+
+  // 2. Inject your personalized text into the modal paragraph element
+  const msgElement = document.getElementById("order-confirmation-msg");
+  if (msgElement) {
+    msgElement.innerText = `Thank you for your order, ${firstName}. Your confirmation number is ${confirmationNumber}.`;
+  }
+
+  // 3. Display the custom success modal using flex alignment
+  const successModal = document.getElementById("order-success-modal");
+  if (successModal) {
+    successModal.style.display = "flex";
+  }
+
+  // 4. Wipe out the local cart store array data
   cart = [];
   saveCart();
-  showMainShop();
+  
+  // 5. Reset all checkout input form fields back to empty
+  const form = document.getElementById("order-submission-form");
+  if (form) form.reset();
+  
+  const billingWrapper = document.getElementById("billing-address-wrapper");
+  if (billingWrapper) billingWrapper.style.display = "none";
+}
+
+// NEW HELPER: Triggers only when they click "KEEP SHOPPING" inside the new popup
+function closeSuccessModalAndReset() {
+    const successModal = document.getElementById("order-success-modal");
+    if (successModal) {
+        successModal.style.display = "none";
+    }
+    // Safely takes the user out of checkout and shows the product grid page again
+    showMainShop();
+}
+
+// NEW HELPER: Dynamically hides/shows billing field based on your checkbox state
+function toggleBillingAddressBox() {
+  const checkbox = document.getElementById("same-as-shipping");
+  const billingWrapper = document.getElementById("billing-address-wrapper");
+  const billingInput = document.getElementById("bill-address");
+  
+  if (checkbox.checked) {
+    billingWrapper.style.display = "none";
+    billingInput.removeAttribute("required");
+  } else {
+    billingWrapper.style.display = "block";
+    billingInput.setAttribute("required", "required");
+  }
 }
 
 // Fire initial functions automatically when any page loads

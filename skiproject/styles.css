@@ -1037,3 +1037,56 @@ p, .auto-style1, #p-desc {
     background: #fff;
     color: #000;
 }
+
+/* Layout configurations for the form field blocks */
+.checkout-layout-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    font-family: sans-serif;
+}
+fieldset {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+}
+legend {
+    font-weight: bold;
+    padding: 0 10px;
+}
+.input-block {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+}
+.input-block label {
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+.input-block input[type="text"],
+.input-block input[type="email"] {
+    padding: 10px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+.form-row-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+.checkbox-block {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+.checkout-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}

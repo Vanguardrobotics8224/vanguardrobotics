@@ -1,26 +1,28 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Slope Style</title>
 
     <link rel="icon" type="image/x-icon" href="logo.jpeg" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Sarpanch:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
+
     <link rel="stylesheet" href="styles.css" />
   </head>
 
   <body>
-    <!-- Header -->
+    <!--Header-->
     <header class="main-header">
       <div class="header-logo">
-        <a href="index.html" class="nav-link"></a>
-
-        <img src="logo.jpeg" alt="Slpoe Styles" class="img" />
+        <a href="index.html" class="nav-link">
+          <img src="logo.jpeg" alt="Ski logo" class="img"
+        /></a>
       </div>
 
       <nav class="header-nav">
@@ -89,37 +91,101 @@
         </button>
       </div>
     </div>
+    <!-- Custom Order Success Modal using your exact layout framework -->
+<div id="order-success-modal" class="custom-modal" style="display: none;">
+  <div class="modal-content">
+    <h2>ORDER CONfIRMED</h2>
+    <!-- This paragraph text gets dynamically populated by your JavaScript -->
+    <p id="order-confirmation-msg" style="margin: 15px 0; font-family: sans-serif; line-height: 1.4; color: #fff;"></p>
+    <button onclick="closeSuccessModalAndReset()" class="modal-btn">
+      KEEP SHOPPING
+    </button>
+  </div>
+</div>
 
-    <div id="checkout-page" style="display: none">
-      <div class="continue-shopping" onclick="showMainShop()">
-        ← CONTINUE SHOPPING
-      </div>
-      <div class="order-summary">
-        <h3>YOUR BAG</h3>
-        <div id="summary-items"></div>
-        <div id="summary-total" class="subtotal-display"></div>
-        <button
-          id="proceed-to-form-btn"
-          onclick="revealShippingForm()"
-          class="purchase-btn"
-        >
-          PROCEED TO CHECK OUT
-        </button>
-      </div>
-      <div
-        id="shipping-form"
-        class="order-form"
-        style="display: none; margin-top: 40px"
-      >
-        <input type="text" placeholder="Full Name" /><input
-          type="email"
-          placeholder="Email Address"
-        />
-        <button onclick="placeOrder()" class="purchase-btn">
-          COMPLETE PURCHASE
-        </button>
-      </div>
+
+<!-- Inside your #checkout-page container element -->
+<div id="checkout-page" style="display: none;">
+    <div class="checkout-layout-container">
+        
+        <!-- Order Summary Side Panel (Existing Structure) -->
+        <div class="summary-panel">
+            <h3>YOUR ORDER</h3>
+            <div id="summary-items"></div>
+            <div id="summary-total"></div>
+        </div>
+
+        <!-- NEW: Secure Checkout Input Forms Box -->
+        <form id="order-submission-form" onsubmit="event.preventDefault(); placeOrder();">
+            
+            <!-- Customer Basics Section -->
+            <fieldset>
+                <legend>Customer Information</legend>
+                <div class="form-row-split">
+                    <div class="input-block">
+                        <label for="cust-first-name">First Name</label>
+                        <input type="text" id="cust-first-name" required placeholder="John">
+                    </div>
+                    <div class="input-block">
+                        <label for="cust-last-name">Last Name</label>
+                        <input type="text" id="cust-last-name" required placeholder="Doe">
+                    </div>
+                </div>
+                <div class="input-block">
+                    <label for="cust-email">Email Address</label>
+                    <input type="email" id="cust-email" required placeholder="john.doe@example.com">
+                </div>
+            </fieldset>
+
+            <!-- Delivery Location Section -->
+            <fieldset>
+                <legend>Shipping Destination</legend>
+                <div class="input-block">
+                    <label for="ship-address">Street Address</label>
+                    <input type="text" id="ship-address" required placeholder="123 Alpine Way, Suite 4B">
+                </div>
+            </fieldset>
+
+            <!-- Payment Details Section -->
+            <fieldset>
+                <legend>Payment Information</legend>
+                <div class="input-block">
+                    <label for="card-num">Credit Card Number</label>
+                    <input type="text" id="card-num" required pattern="[0-9\s]{13,19}" maxlength="19" placeholder="4111 2222 3333 4444">
+                </div>
+                <div class="form-row-split">
+                    <div class="input-block">
+                        <label for="card-expiry">Expiry Date</label>
+                        <input type="text" id="card-expiry" required pattern="(0[1-9]|1[0-2])\/[0-9]{2}" maxlength="5" placeholder="MM/YY">
+                    </div>
+                    <div class="input-block">
+                        <label for="card-ccv">CCV</label>
+                        <input type="text" id="card-ccv" required pattern="[0-9]{3,4}" maxlength="4" placeholder="321">
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Billing Details Section -->
+            <fieldset>
+                <legend>Billing Details</legend>
+                <div class="input-block checkbox-block">
+                    <input type="checkbox" id="same-as-shipping" checked onchange="toggleBillingAddressBox()">
+                    <label for="same-as-shipping">Billing Address matches Shipping Address</label>
+                </div>
+                <div class="input-block" id="billing-address-wrapper" style="display: none;">
+                    <label for="bill-address">Billing Address</label>
+                    <input type="text" id="bill-address" placeholder="456 Invoice Road">
+                </div>
+            </fieldset>
+
+            <!-- Order Confirmation Buttons -->
+            <div class="checkout-actions">
+                <button type="button" class="back-btn" onclick="showMainShop()">BACK TO SHOP</button>
+                <button type="submit" class="submit-order-btn">PLACE SECURE ORDER</button>
+            </div>
+        </form>
     </div>
+</div>
 
     <script src="cart.js"></script>
 
